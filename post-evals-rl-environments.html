@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why evaluations and reinforcement-learning environments share the same architecture but serve different optimization loops.">
+  <meta name="theme-color" content="#e7dcc8">
+  <title>Evals and RL Environments Are the Same Machine With Different Jobs — Vikram Kharvi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="blog-page post-page">
+  <a class="skip-link" href="#article">Skip to article</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
+    <div class="nav-links">
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="https://artofcyberai.com/#work">Work</a>
+      <a href="https://artofcyberai.com/#about">About</a>
+    </div>
+    <a class="nav-site" href="https://artofcyberai.com/" target="_blank" rel="noreferrer">Main site <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <header class="blog-hero post-hero">
+    <div class="blog-hero-copy reveal is-visible">
+      <a class="back-link" href="blog.html">← All titles</a>
+      <p class="eyebrow"><span></span> Issue 01 / Measurement systems</p>
+      <h1>Evals and RL environments are the <em>same machine</em> with different jobs.</h1>
+      <p class="blog-deck">Both begin with a task, place a model inside a world, and score what happens. The difference is where that score goes—and what pressure it creates.</p>
+      <div class="article-meta">
+        <span>Vikram Kharvi</span>
+        <span>13 Aug 2026</span>
+        <span>5 min read</span>
+        <a class="medium-reference" data-medium-post="evals-rl-environments" hidden target="_blank" rel="noreferrer">Also on Medium ↗</a>
+      </div>
+    </div>
+
+    <div class="rl-visual reveal is-visible" data-parallax="0.025" aria-label="Diagram showing prompt, environment, and grader feeding two different optimization loops">
+      <div class="machine-paper">
+        <p>ONE ARCHITECTURE / TWO JOBS</p>
+        <div class="machine-core">
+          <div><span>01</span><strong>Prompt</strong><small>What must be done?</small></div>
+          <b>→</b>
+          <div><span>02</span><strong>Environment</strong><small>Where does it happen?</small></div>
+          <b>→</b>
+          <div><span>03</span><strong>Grader</strong><small>What counts as success?</small></div>
+        </div>
+        <div class="machine-fork">
+          <div><span>EVAL</span><strong>Researcher decides</strong><small>Compare checkpoints · choose direction</small></div>
+          <i>same score,<br>different destination</i>
+          <div><span>RL ENV</span><strong>Optimizer updates</strong><small>Generate signal · change weights</small></div>
+        </div>
+        <svg viewBox="0 0 540 210" aria-hidden="true">
+          <path d="M270 8v58c0 25-145 11-145 58v70"/>
+          <path d="M270 66c0 25 145 11 145 58v70"/>
+        </svg>
+      </div>
+      <span class="tape tape-top"></span>
+      <span class="tape tape-bottom"></span>
+    </div>
+  </header>
+
+  <main class="blog-main" id="article">
+    <article class="blog-article">
+      <p class="article-lede reveal"><span>The cleanest way to understand an evaluation is to stop treating it as a leaderboard.</span> It is a decision instrument: a controlled way to learn whether a model changed in the direction we intended.</p>
+
+      <div class="article-rule reveal"><span>BUILDING BETTER LLMS</span><i></i><span>ISSUE 01 / 09</span></div>
+
+      <section class="article-section reveal" aria-labelledby="anatomy-title">
+        <aside><span>01</span><p>The anatomy</p></aside>
+        <div>
+          <h2 id="anatomy-title">Start with three components.</h2>
+          <p>Every useful task needs a prompt, an environment, and a grader. The prompt defines the objective. The environment gives the model a state to observe and actions it can take. The grader converts the resulting behavior into a score.</p>
+          <p>This is true whether the task asks an agent to repair software, operate a terminal, navigate a simulated computer, or complete a multi-step workflow. Without the environment, we only measure language. Without the grader, we have no stable signal. Without a well-formed prompt, we do not know which capability the score represents.</p>
+          <blockquote>The architecture is shared. What changes is the destination of the score.</blockquote>
+          <p>In an evaluation, the score returns to a researcher. It helps compare model checkpoints, choose training directions, or decide whether a change created a regression. In an RL environment, the score enters the optimization loop and contributes directly to changing model behavior.</p>
+        </div>
+      </section>
+
+      <section class="article-section reveal" aria-labelledby="economics-title">
+        <aside><span>02</span><p>The economics</p></aside>
+        <div>
+          <h2 id="economics-title">The user of the signal changes the data you need.</h2>
+          <p>A human researcher is relatively sample-efficient. They can look at a smaller set of carefully constructed failures, recognize a pattern, and choose the next experiment. Their time is scarce, so noisy or misleading cases are expensive. An evaluation suite should therefore emphasize precision, stability, and diagnostic value.</p>
+          <p>An optimization algorithm has the opposite appetite. It needs many more experiences. Reusing a narrow set of tasks creates brittle learning, so an RL environment needs breadth, diversity, and enough variation to support generalization.</p>
+          <div class="comparison-table" role="table" aria-label="Evaluation and RL environment priorities">
+            <div role="row"><span role="columnheader">Priority</span><strong role="columnheader">Evaluation</strong><strong role="columnheader">RL environment</strong></div>
+            <div role="row"><span role="cell">Primary consumer</span><p role="cell">Researcher</p><p role="cell">Optimizer</p></div>
+            <div role="row"><span role="cell">Main purpose</span><p role="cell">Support a decision</p><p role="cell">Create learning signal</p></div>
+            <div role="row"><span role="cell">Task strategy</span><p role="cell">Curated and diagnostic</p><p role="cell">Broad and diverse</p></div>
+            <div role="row"><span role="cell">Critical failure</span><p role="cell">Noise hides a real change</p><p role="cell">Narrow tasks teach a shortcut</p></div>
+          </div>
+          <p>The distinction is not “quality versus quantity.” Both require quality. The distinction is what quality means for the loop: low-noise evidence for a human decision, or diverse experiences for robust learning.</p>
+        </div>
+      </section>
+
+      <section class="article-section reveal" aria-labelledby="signal-title">
+        <aside><span>03</span><p>The signal</p></aside>
+        <div>
+          <h2 id="signal-title">A useful task sits at the edge of capability.</h2>
+          <p>If every model receives a perfect score, the task cannot tell us which system is better. If every model receives zero, the result is equally unhelpful. The task becomes decision-relevant only when current systems display meaningful variation.</p>
+          <p>This is why good task design begins with a real failure. Try to use the model. Find where it stops being dependable. Then isolate enough of that situation to reproduce the difficulty without removing the thing that made it difficult.</p>
+          <div class="signal-band" aria-label="The useful signal band between tasks that are too easy and too hard">
+            <div><span>Too easy</span><small>All models pass</small></div>
+            <div><span>Useful signal</span><small>Capabilities separate</small></div>
+            <div><span>Too hard</span><small>All models fail</small></div>
+          </div>
+          <p>The target moves. A task that exposed a capability gap last year may be saturated today. That is not a failure of evaluation; it is evidence that the measurement did its job and a sharper question is now required.</p>
+        </div>
+      </section>
+
+      <section class="article-section reveal" aria-labelledby="grader-title">
+        <aside><span>04</span><p>The pressure</p></aside>
+        <div>
+          <h2 id="grader-title">The grader does not merely observe behavior. It shapes it.</h2>
+          <p>A simple software test might confirm that a happy path works while missing the interactions a real user will try. Once a model is optimized against that test, passing it can become easier than building a genuinely reliable feature.</p>
+          <p>This is the central danger of a weak proxy. The score rises, but the underlying capability does not improve in the way users care about. More data does not remove a systematic bias in the grader; it can reinforce it.</p>
+          <div class="grader-note">
+            <p>Before trusting a score, ask:</p>
+            <ul>
+              <li>Can the task be completed fairly from the information provided?</li>
+              <li>Could a shallow shortcut earn the same score as a robust solution?</li>
+              <li>Does the grader examine the behavior users actually depend on?</li>
+              <li>Would optimizing this score create a habit we want the model to keep?</li>
+            </ul>
+          </div>
+          <p>The right question is not only “Does the grader work?” It is “What model does this grader create after thousands of optimization steps?”</p>
+        </div>
+      </section>
+
+      <section class="article-section reveal" aria-labelledby="practice-title">
+        <aside><span>05</span><p>The practice</p></aside>
+        <div>
+          <h2 id="practice-title">Build the learning loop deliberately.</h2>
+          <p>When I think about an RL environment, I start from the capability gap and work backward. The virtual world, available tools, task instructions, and scoring logic should all preserve the difficulty I want the model to learn from.</p>
+          <ol class="design-principles">
+            <li><span>01</span><div><strong>Begin with a real pain point.</strong><p>A concrete failure is more informative than a capability imagined in the abstract.</p></div></li>
+            <li><span>02</span><div><strong>Preserve the source of difficulty.</strong><p>Do not simplify the scenario until the very behavior you wanted to measure disappears.</p></div></li>
+            <li><span>03</span><div><strong>Make success verifiable.</strong><p>Prefer observable state changes and outcomes over confident-looking language.</p></div></li>
+            <li><span>04</span><div><strong>Audit the grader adversarially.</strong><p>Search for cheap ways to score well without developing the intended capability.</p></div></li>
+            <li><span>05</span><div><strong>Design for the next model.</strong><p>The task should remain useful as capabilities improve, not only separate today’s systems.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="article-section article-close reveal" aria-labelledby="close-title">
+        <aside><span>06</span><p>The takeaway</p></aside>
+        <div>
+          <h2 id="close-title">Measurement and learning belong in one conversation.</h2>
+          <p>Evals tell researchers where the model is. RL environments create the experiences that move it. Treating them as unrelated products hides their shared structure and makes both harder to design well.</p>
+          <p>The most productive loop is continuous: observe a real failure, represent it faithfully, measure it reliably, create diverse experiences around it, and return to the evaluation to see whether behavior genuinely improved.</p>
+          <a class="button button-primary" href="blog.html">View all nine titles <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <a class="next-issue reveal" href="post-edge-of-capability.html" aria-label="Read issue 02">
+    <span>Next · Issue 02</span>
+    <h2>Useful Tasks Live at the Edge of Capability</h2>
+    <p>Why task difficulty must move with the model.</p>
+  </a>
+
+  <footer>
+    <div class="footer-main">
+      <p class="section-index">Issue 01 / Complete</p>
+      <h2>Build the signal you want to learn from.</h2>
+      <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>↗</span></a>
+    </div>
+    <div class="footer-bottom">
+      <p>Vikram Kharvi · Applied AI Researcher & Engineer</p>
+      <p>California · <span id="local-time">Pacific time</span></p>
+      <a href="#article">Back to article ↑</a>
+    </div>
+  </footer>
+
+  <script src="medium-links.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
