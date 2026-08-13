@@ -289,7 +289,7 @@ main { overflow: clip; }
 .section-heading h2, .work-intro h2, .about h2 { margin: 0; font: 400 clamp(48px, 5.2vw, 76px)/0.98 var(--serif); letter-spacing: -0.042em; }
 .section-heading > p { margin: 0; padding-left: 24px; border-left: 1px solid var(--red); font: 16px/1.55 var(--serif); color: var(--muted); }
 
-.note-grid { display: grid; grid-template-columns: 1.08fr 0.92fr 0.92fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.note-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
 .note-card { min-height: 560px; border-right: 1px solid var(--ink); position: relative; overflow: hidden; transition: background 0.35s ease; }
 .note-card:last-child { border-right: 0; }
 .note-card a { height: 100%; padding: 28px; display: flex; flex-direction: column; color: inherit; text-decoration: none; }
@@ -534,6 +534,13 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .grader-note ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
 .grader-note li { padding: 14px 0 14px 24px; position: relative; border-bottom: 1px solid var(--line); font: 15px/1.45 var(--serif); }
 .grader-note li::before { content: "→"; position: absolute; left: 0; color: var(--red); }
+.trajectory-schema { margin: 45px 0; border: 1px solid var(--ink); background: var(--paper-light); box-shadow: 7px 9px 0 var(--ink); }
+.trajectory-schema > div { display: grid; grid-template-columns: 42px 120px 1fr; gap: 16px; align-items: baseline; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+.trajectory-schema > div:last-child { border-bottom: 0; }
+.trajectory-schema span { color: var(--red); font: 700 9px var(--mono); letter-spacing: .08em; }
+.trajectory-schema strong { font: 700 13px var(--mono); }
+.trajectory-schema p { margin: 0; color: var(--muted); font: 15px/1.5 var(--serif); }
+.trajectory-schema code, .article-section code { color: var(--red); font: .82em/1.45 var(--mono); }
 .design-principles { margin: 45px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
 .design-principles li { padding: 23px 0; display: grid; grid-template-columns: 50px 1fr; gap: 22px; border-bottom: 1px solid var(--line); }
 .design-principles > li > span { color: var(--red); font: 700 9px var(--mono); }
@@ -558,9 +565,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .manifesto { grid-template-columns: 130px 1fr; }
   .manifesto .side-note { display: none; }
   .note-grid { grid-template-columns: 1fr 1fr; }
-  .note-card:first-child { grid-row: span 2; }
-  .note-card:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--ink); }
-  .note-card:nth-child(3) { border-right: 0; }
+  .note-card:first-child { grid-row: auto; }
   .note-card { min-height: 480px; }
   .work { grid-template-columns: 270px 1fr; gap: 55px; }
   .work-intro h2 { font-size: 46px; }
@@ -649,6 +654,8 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .article-section h2 { font-size: 43px; }
   .article-section > div > p { font-size: 17px; }
   .article-section blockquote { margin-left: 0; padding-left: 23px; font-size: 29px; }
+  .trajectory-schema > div { grid-template-columns: 32px 1fr; gap: 8px 12px; padding: 17px; }
+  .trajectory-schema p { grid-column: 2; }
   .series-hero { min-height: auto; padding: 55px 0 100px; display: block; }
   .series-hero h1 { font-size: clamp(75px,24vw,108px); }
   .series-intro { margin-top: 70px; padding-left: 22px; }
