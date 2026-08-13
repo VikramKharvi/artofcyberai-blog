@@ -488,6 +488,24 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .blog-index-page .issue-meta span + span { display: none; }
 .blog-index-page .issue-copy h3 { margin: 0; font-size: clamp(18px,1.65vw,23px); line-height: 1.02; }
 .blog-index-page .issue-copy > p { display: none; }
+.blog-index-page .tech-board { padding-top: 42px; border-top: 1px solid var(--ink); }
+.blog-index-page .tech-title-list { grid-template-columns: repeat(5,1fr); }
+.blog-index-page .tech-title-list .title-item > a { min-height: 148px; }
+.blog-index-page .tech-title-list .issue-copy h3 { font-size: clamp(17px,1.35vw,21px); }
+.reading-heading { margin: 42px 0 16px; display: flex; align-items: end; justify-content: space-between; gap: 32px; }
+.reading-heading .section-index { margin: 0; }
+.reading-heading h3 { margin: 0; font: italic 32px/1 var(--serif); }
+.reading-grid { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.reading-card { min-height: 190px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); color: inherit; text-decoration: none; transition: background .25s ease; }
+.reading-card:hover { background: var(--paper-light); }
+.reading-card span { color: var(--red); font: 700 8px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.reading-card h3 { margin: 28px 0 10px; font: 400 28px/1 var(--serif); }
+.reading-card p { margin: 0 0 22px; color: var(--muted); font: 14px/1.45 var(--serif); }
+.reading-card b { margin-top: auto; color: var(--red); font: 700 8px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.source-note { margin: 52px 0; padding: 28px 30px; border: 1px solid var(--ink); background: var(--paper-light); box-shadow: 6px 7px 0 var(--ink); }
+.source-note span { display: block; margin-bottom: 12px; color: var(--red); font: 700 9px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.source-note a { font: 400 24px/1.2 var(--serif); text-underline-offset: 5px; }
+.source-note p { margin: 14px 0 0; color: var(--muted); font: 14px/1.5 var(--serif); }
 .blog-index-page .issue-action { position: absolute; right: 13px; bottom: 9px; font-size: 7px; }
 .blog-index-page .issue-action b { font-size: 13px; }
 
@@ -681,8 +699,14 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .blog-index-page .title-board-heading { display: block; margin-bottom: 20px; }
   .blog-index-page .title-board-heading > p { margin-top: 10px; }
   .blog-index-page .title-list { grid-template-columns: 1fr; }
+  .blog-index-page .tech-title-list { grid-template-columns: 1fr; }
   .blog-index-page .title-item > a { min-height: 104px; padding: 14px 44px 13px 14px; display: block; }
   .blog-index-page .title-item > a:hover { padding-left: 14px; }
+  .reading-heading { display: block; }
+  .reading-heading h3 { margin-top: 13px; }
+  .reading-grid { grid-template-columns: 1fr; }
+  .reading-card { min-height: 170px; }
+  .source-note { padding: 23px; }
   .blog-index-page .issue-action { grid-column: auto; margin-top: 0; }
   .post-hero h1 { font-size: clamp(47px,13.7vw,63px); }
   .machine-paper { min-height: 620px; padding: 18px; }

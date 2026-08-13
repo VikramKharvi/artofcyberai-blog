@@ -31,8 +31,8 @@
       <h1>Ideas,<br><em>in sequence.</em></h1>
     </div>
     <div class="series-intro reveal is-visible">
-      <p class="series-count">9 essays · complete series</p>
-      <p>Nine compact field notes on measuring models, designing environments, and building capable agents.</p>
+      <p class="series-count">9 research essays · 5 technical notes · 3 primers</p>
+      <p>Research arguments first, followed by a practical notebook on how language models are built.</p>
       <a href="#titles">See every title <span>↓</span></a>
     </div>
   </header>
@@ -148,6 +148,31 @@
           </a>
         </li>
       </ol>
+    </section>
+
+    <section class="title-board tech-board" id="tech-notes" aria-labelledby="tech-title">
+      <div class="title-board-heading reveal">
+        <div>
+          <p class="section-index">Series 02 / Technical foundations</p>
+          <h2 id="tech-title">The implementation notebook</h2>
+        </div>
+        <p>Five transcript-informed essays that move from text encoding to training a complete language-model system.</p>
+      </div>
+
+      <ol class="title-list tech-title-list">
+        <li class="title-item is-published reveal"><a href="tech-tokenization-model-design.html"><div class="issue-number">T1</div><div class="issue-copy"><div class="issue-meta"><span>Technical note · 13 Aug 2026</span><span>5 min read</span></div><h3>Tokenization Is a Model Design Decision</h3><p>Unicode, bytes, merge rules, special tokens, and the hidden contract between text and a model.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-llm-system-map.html"><div class="issue-number">T2</div><div class="issue-copy"><div class="issue-meta"><span>Technical note · 13 Aug 2026</span><span>5 min read</span></div><h3>An LLM Is a Model Inside a Larger System</h3><p>Pretraining creates capability; adaptation, tools, evaluation, and security determine behavior.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-build-gpt.html"><div class="issue-number">T3</div><div class="issue-copy"><div class="issue-meta"><span>Technical note · 13 Aug 2026</span><span>5 min read</span></div><h3>Build GPT From the Data Pipeline Up</h3><p>A minimal path from next-token counts to attention, transformer blocks, training, and generation.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-reproduce-gpt2.html"><div class="issue-number">T4</div><div class="issue-copy"><div class="issue-meta"><span>Technical note · 13 Aug 2026</span><span>5 min read</span></div><h3>Reproducing GPT-2 Is a Systems Exercise</h3><p>Architecture fidelity matters, but data movement, numerical formats, kernels, and measurement decide the run.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-chatgpt-pipeline.html"><div class="issue-number">T5</div><div class="issue-copy"><div class="issue-meta"><span>Technical note · 13 Aug 2026</span><span>5 min read</span></div><h3>How a Base Model Becomes an Assistant</h3><p>Tokenization, pretraining, post-training, reasoning, tools, and multimodality as one production pipeline.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+      </ol>
+
+      <div class="reading-heading reveal"><p class="section-index">Reference shelf / External primers</p><h3>Go deeper into the machinery.</h3></div>
+      <div class="reading-grid">
+        <a class="reading-card reveal" href="https://aman.ai/primers/ai/mixture-of-experts/" target="_blank" rel="noreferrer"><span>01 / Sparse models</span><h3>Mixture of Experts</h3><p>Conditional computation, routing, expert capacity, load balancing, and hardware trade-offs.</p><b>Read primer ↗</b></a>
+        <a class="reading-card reveal" href="https://aman.ai/primers/ai/LLM/" target="_blank" rel="noreferrer"><span>02 / System map</span><h3>Large Language Models</h3><p>Embeddings, training, context, sampling, evaluation, and the broader model landscape.</p><b>Read primer ↗</b></a>
+        <a class="reading-card reveal" href="https://aman.ai/primers/ai/transformers/" target="_blank" rel="noreferrer"><span>03 / Architecture</span><h3>Transformers</h3><p>Attention, positions, masks, residual paths, normalization, and efficient generation.</p><b>Read primer ↗</b></a>
+      </div>
     </section>
   </main>
 
