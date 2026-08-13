@@ -538,6 +538,23 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .chapter-sources a { font: 16px/1.4 var(--serif); text-underline-offset: 4px; }
 .redirect-note { width: min(760px,calc(100vw - 40px)); min-height: 100vh; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
 .redirect-note h1 { max-width: 700px; margin: 0 0 35px; font: 400 clamp(48px,7vw,82px)/.96 var(--serif); letter-spacing: -.045em; }
+.chapter-sketch { margin: 0 0 115px 245px; position: relative; border: 1px solid var(--ink); background: repeating-linear-gradient(0deg,transparent 0 27px,rgba(49,89,75,.08) 27px 28px),var(--paper-light); box-shadow: 8px 10px 0 rgba(28,33,29,.6); transform: rotate(-.25deg); }
+.chapter-sketch::before { content: ""; width: 118px; height: 28px; position: absolute; top: -14px; left: calc(50% - 59px); z-index: 2; background: rgba(204,187,149,.58); transform: rotate(1.5deg); }
+.chapter-sketch svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chapter-sketch figcaption { margin: 0; padding: 17px 22px; display: flex; gap: 15px; border-top: 1px solid var(--ink); color: var(--muted); font: 14px/1.45 var(--serif); }
+.chapter-sketch figcaption span { flex: 0 0 auto; color: var(--red); font: 700 9px/1.8 var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.sketch-box { fill: var(--paper-light); stroke: var(--ink); stroke-width: 2; }
+.sketch-stack { fill: rgba(162,60,46,.08); }
+.sketch-accent-fill { fill: rgba(162,60,46,.1); }
+.sketch-line, .sketch-accent, .sketch-faint { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sketch-accent { stroke: var(--red); stroke-width: 2.2; }
+.sketch-faint { stroke: var(--line); stroke-width: 1.5; }
+.sketch-dashed { stroke-dasharray: 8 7; }
+.sketch-arrowhead { fill: var(--red); }
+.sketch-label, .sketch-kicker { fill: var(--ink); font: 700 12px var(--mono); letter-spacing: .06em; }
+.sketch-kicker { fill: var(--red); font-size: 10px; letter-spacing: .11em; }
+.sketch-note { fill: var(--muted); font: italic 15px var(--serif); }
+.sketch-red { fill: var(--red); }
 .blog-index-page .issue-action { position: absolute; right: 13px; bottom: 9px; font-size: 7px; }
 .blog-index-page .issue-action b { font-size: 13px; }
 
@@ -750,6 +767,10 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .schema-table { overflow-x: auto; }
   .schema-table > div { min-width: 560px; }
   .chapter-flow { justify-content: flex-start; }
+  .chapter-sketch { margin: 0 0 90px; overflow-x: auto; box-shadow: 5px 7px 0 rgba(28,33,29,.6); }
+  .chapter-sketch svg { width: 760px; max-width: none; }
+  .chapter-sketch figcaption { padding: 15px 17px; display: block; }
+  .chapter-sketch figcaption span { display: block; margin-bottom: 6px; }
   .blog-index-page .issue-action { grid-column: auto; margin-top: 0; }
   .post-hero h1 { font-size: clamp(47px,13.7vw,63px); }
   .machine-paper { min-height: 620px; padding: 18px; }
