@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vikram Kharvi's two-part series on pre-training language models and shaping them through post-training, reinforcement learning, and evaluation.">
+  <meta name="description" content="Vikram Kharvi's technical series on pre-training language models, shaping them through post-training, and serving them under real latency and reliability constraints.">
   <meta name="theme-color" content="#e7dcc8">
-  <title>Model Training Series — Vikram Kharvi</title>
+  <title>Model Lifecycle Series — Vikram Kharvi</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="blog-page blog-index-page">
@@ -24,15 +24,15 @@
   </nav>
 
   <header class="series-hero">
-    <p class="margin-code" aria-hidden="true">MODEL TRAINING / SERIES 01—02</p>
+    <p class="margin-code" aria-hidden="true">MODEL LIFECYCLE / SERIES 01—03</p>
     <div class="reveal is-visible">
       <a class="back-link" href="https://artofcyberai.com/">← Back home</a>
-      <p class="eyebrow"><span></span> Pre-training · post-training · RL environments</p>
+      <p class="eyebrow"><span></span> Pre-training · post-training · serving</p>
       <h1>Building intelligence,<br><em>chapter by chapter.</em></h1>
     </div>
     <div class="series-intro reveal is-visible">
-      <p class="series-count">2 series · 14 original pieces</p>
-      <p>Start with the mechanics of a base model, then follow the feedback systems that shape its behavior.</p>
+      <p class="series-count">3 series · 15 original pieces</p>
+      <p>Build the base model, shape its behavior, then serve it under real latency and reliability constraints.</p>
       <a href="#titles">See every title <span>↓</span></a>
     </div>
   </header>
@@ -45,7 +45,7 @@
       </div>
 
       <ol class="title-list tech-title-list pretraining-chapter-list">
-        <li class="title-item is-published reveal"><a href="tech-llm-system-map.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 01 · 13 Aug 2026</span><span>22 min read</span></div><h3>Large Language Models</h3><p>Representation, training stages, scaling, generation, working memory, tools, evidence, security, and known limits.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-llm-system-map.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 01 · 13 Aug 2026</span><span>17 min read</span></div><h3>Large Language Models</h3><p>Token representation, model families, objectives, scaling budgets, checkpoints, evaluation, and base-model limits.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
         <li class="title-item is-published reveal"><a href="tech-transformer-architecture.html"><div class="issue-number">02</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 02 · 13 Aug 2026</span><span>24 min read</span></div><h3>Transformer Architecture</h3><p>From bigram aggregation to QKV attention, causal masks, residual blocks, position, caches, efficient kernels, and tests.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
         <li class="title-item is-published reveal"><a href="tech-mixture-of-experts.html"><div class="issue-number">03</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 03 · 13 Aug 2026</span><span>14 min read</span></div><h3>Mixture of Experts</h3><p>Routing families, expert capacity, token dropping, shared experts, load balancing, expert parallelism, and failure modes.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
         <li class="title-item is-published reveal"><a href="tech-tokenization-model-design.html"><div class="issue-number">04</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 04 · 13 Aug 2026</span><span>38 min read</span></div><h3>Pre-training a Large Language Model</h3><p>Unicode, BPE, data shards, GPT-2, initialization, AdamW, fast kernels, distributed training, evaluation, and reproducibility.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
@@ -59,7 +59,7 @@
       </div>
 
       <ol class="title-list tech-title-list series-feature-list">
-        <li class="title-item is-published reveal"><a href="tech-chatgpt-pipeline.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Technical chapter · 13 Aug 2026</span><span>28 min read</span></div><h3>Post-training a Language Model</h3><p>Conversation data, preferences, verifiable RL, PPO, DPO, reasoning tokens, tools, working memory, limitations, and evaluation.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+        <li class="title-item is-published reveal"><a href="tech-chatgpt-pipeline.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Technical chapter · 13 Aug 2026</span><span>32 min read</span></div><h3>Post-training a Language Model</h3><p>Assistant contracts, conversation data, preferences, verifiable RL, PPO, DPO, tools, working memory, security boundaries, and evaluation.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
       </ol>
 
       <div class="reading-heading reveal"><p class="section-index">Post-training research / RL and agents</p><h3>Feedback becomes a learning system.</h3></div>
@@ -75,11 +75,22 @@
         <li class="title-item is-published reveal"><a href="post-good-agent-trajectory.html"><div class="issue-number">10</div><div class="issue-copy"><div class="issue-meta"><span>Research essay · 13 Aug 2026</span><span>6 min read</span></div><h3>What a Good Agent Trajectory Must Capture</h3><p>The state, actions, evidence, provenance, and costs required to explain why an outcome happened.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
       </ol>
     </section>
+
+    <section class="title-board tech-board" id="serving" aria-labelledby="serving-series-title">
+      <div class="title-board-heading reveal">
+        <div><p class="section-index">Series 03 / Model serving</p><h2 id="serving-series-title">Put the model into production</h2></div>
+        <p>Turn a checkpoint into a reliable service by designing the request path, scheduler, cache, parallel execution, numerical format, and evidence together.</p>
+      </div>
+
+      <ol class="title-list tech-title-list series-feature-list">
+        <li class="title-item is-published reveal"><a href="tech-model-serving-inference.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Technical chapter · 13 Aug 2026</span><span>30 min read</span></div><h3>Model Serving and Inference</h3><p>Prefill and decode, KV-cache arithmetic, continuous batching, parallelism, quantization, speculative decoding, capacity, reliability, and load testing.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+      </ol>
+    </section>
   </main>
 
   <footer>
     <div class="footer-main">
-      <p class="section-index">Complete model-training series</p>
+      <p class="section-index">Complete model-lifecycle series</p>
       <h2>Better models begin with better questions.</h2>
       <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>↗</span></a>
     </div>
