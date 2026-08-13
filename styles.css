@@ -509,6 +509,13 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .source-note p { margin: 14px 0 0; color: var(--muted); font: 14px/1.5 var(--serif); }
 .chapter-article { width: min(1120px, calc(100vw - 64px)); }
 .chapter-article section[id] { scroll-margin-top: 34px; }
+.chapter-credit { margin: 0 0 54px 245px; padding: 25px 28px 23px; border-left: 3px solid var(--red); background: rgba(244,237,223,.72); }
+.chapter-credit > span { display: block; margin-bottom: 12px; color: var(--red); font: 700 9px var(--mono); text-transform: uppercase; letter-spacing: .11em; }
+.chapter-credit p { max-width: 760px; margin: 0; color: var(--muted); font: 16px/1.6 var(--serif); }
+.chapter-credit p a { color: var(--ink); font-weight: 700; text-underline-offset: 4px; }
+.chapter-credit ul { margin: 18px 0 0; padding: 15px 0 0; display: flex; flex-wrap: wrap; gap: 9px 22px; border-top: 1px solid var(--line); list-style: none; }
+.chapter-credit li { margin: 0; }
+.chapter-credit li a { color: var(--red); font: 700 9px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; text-underline-offset: 4px; }
 .chapter-toc { margin: 0 0 110px 245px; padding: 28px; border: 1px solid var(--ink); background: var(--paper-light); box-shadow: 7px 8px 0 var(--ink); }
 .chapter-toc > span { display: block; margin-bottom: 20px; color: var(--red); font: 700 9px var(--mono); text-transform: uppercase; letter-spacing: .11em; }
 .chapter-toc ol { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4,1fr); list-style: none; counter-reset: toc; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
@@ -757,6 +764,8 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .reading-card { min-height: 170px; }
   .source-note { padding: 23px; }
   .chapter-article { width: var(--page); }
+  .chapter-credit { margin: 0 0 48px; padding: 22px; }
+  .chapter-credit ul { display: grid; gap: 11px; }
   .chapter-toc { margin: 0 0 85px; padding: 20px; }
   .chapter-toc ol { grid-template-columns: 1fr 1fr; }
   .chapter-toc a { min-height: 56px; padding: 11px; }
