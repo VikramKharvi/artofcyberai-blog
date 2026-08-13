@@ -490,6 +490,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .blog-index-page .issue-copy > p { display: none; }
 .blog-index-page .tech-board { padding-top: 42px; border-top: 1px solid var(--ink); }
 .blog-index-page .tech-title-list { grid-template-columns: repeat(2,1fr); }
+.blog-index-page .series-feature-list { grid-template-columns: 1fr; }
 .blog-index-page .tech-title-list .title-item > a { min-height: 185px; }
 .blog-index-page .tech-title-list .issue-copy h3 { font-size: clamp(25px,2.5vw,36px); }
 .blog-index-page .tech-title-list .issue-copy > p { display: block; max-width: 480px; font-size: 13px; }
