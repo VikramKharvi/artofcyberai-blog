@@ -270,7 +270,7 @@ async function createEngine() {
   if (state.enginePromise) return state.enginePromise;
   state.enginePromise = (async () => {
     if (!navigator.gpu) throw new Error("WebGPU is unavailable in this browser.");
-    setStatus("Connecting to the browser-local model...");
+    setStatus("Connecting to the browser AI...");
     const webllm = await import("https://esm.run/@mlc-ai/web-llm");
     const adapter = await navigator.gpu.requestAdapter();
     if (!adapter) throw new Error("No compatible WebGPU adapter was found.");
@@ -280,7 +280,7 @@ async function createEngine() {
       : "SmolLM2-360M-Instruct-q4f32_1-MLC";
     const worker = new Worker(new URL("./site-chat-worker.js", import.meta.url), { type: "module" });
     return webllm.CreateWebWorkerMLCEngine(worker, model, {
-      initProgressCallback: (progress) => setStatus(progress.text || "Loading the local model...")
+      initProgressCallback: (progress) => setStatus(progress.text || "Loading the browser AI...")
     });
   })();
   return state.enginePromise;
@@ -288,8 +288,8 @@ async function createEngine() {
 
 function fallbackAnswer(results, error) {
   const introduction = error?.message?.includes("WebGPU")
-    ? "This browser cannot run the local model, but these passages are the closest match:"
-    : "The local model could not start. These passages are the closest match:";
+    ? "This browser cannot run the browser AI, but these passages are the closest match:"
+    : "The browser AI could not start. These passages are the closest match:";
   const text = results.length
     ? `${introduction}\n\n${results.slice(0, 3).map((result) => `${result.heading}: ${result.text.slice(0, 280)}...`).join("\n\n")}`
     : "I can only answer questions supported by Vikram Kharvi's published field notes. I could not find a relevant source for that question.";
@@ -362,7 +362,7 @@ async function answer(question) {
 
 async function prepareChat() {
   state.download.disabled = true;
-  state.download.querySelector("strong").textContent = "Preparing local AI...";
+  state.download.querySelector("strong").textContent = "Preparing browser AI...";
   try {
     await buildIndex();
     await createEngine();
@@ -370,14 +370,14 @@ async function prepareChat() {
     state.download.remove();
     state.input.disabled = false;
     state.form.querySelector("button").disabled = false;
-    addMessage("assistant", "The local model is ready. Ask a question about any published chapter.");
+    addMessage("assistant", "The browser AI is ready. Ask a question about any published chapter.");
     setStatus("Ready — inference runs in your browser");
     state.input.focus();
   } catch (error) {
     state.enginePromise = null;
     state.download.disabled = false;
     state.download.querySelector("strong").textContent = "Try downloading again";
-    addMessage("assistant", `The local model could not start: ${error.message}`);
+    addMessage("assistant", `The browser AI could not start: ${error.message}`);
     setStatus("A WebGPU-capable browser is required");
   }
 }
@@ -408,18 +408,18 @@ function initializeChat() {
   panel.setAttribute("aria-label", "Ask the field notes");
   panel.innerHTML = `
     <header class="site-chat-header">
-      <div><small>Browser-local research assistant</small><h2>Ask the field notes</h2></div>
+      <div><small>In-browser research assistant</small><h2>Ask the field notes</h2></div>
       <button type="button" aria-label="Close chat">&times;</button>
     </header>
     <div class="site-chat-messages" aria-live="polite">
-      <div class="site-chat-message is-assistant">Ask about pre-training, post-training, RL environments, agent trajectories, or model serving. Nothing downloads until you choose to start the local model.</div>
+      <div class="site-chat-message is-assistant">You need to download this browser AI to access the assistant. Afterward, ask about pre-training, post-training, RL environments, agent trajectories, or model serving.</div>
     </div>
-    <button class="site-chat-download" type="button"><strong>Download local AI</strong><span>First use &middot; approximately 400&ndash;600 MB</span></button>
+    <button class="site-chat-download" type="button"><strong>Download browser AI</strong><span>Required for access &middot; first download approximately 400&ndash;600 MB</span></button>
     <form class="site-chat-form">
       <label for="site-chat-question">Your question</label>
       <div><input id="site-chat-question" name="question" autocomplete="off" placeholder="How should an RL trajectory be recorded?" required disabled><button type="submit" disabled>Ask</button></div>
     </form>
-    <footer class="site-chat-meta"><span>Local inference</span><span class="site-chat-status">Download required</span><a href="https://github.com/mlc-ai/web-llm" target="_blank" rel="noreferrer">Powered by WebLLM &nearr;</a></footer>`;
+    <footer class="site-chat-meta"><span>Browser AI</span><span class="site-chat-status">Download required for access</span><a href="https://github.com/mlc-ai/web-llm" target="_blank" rel="noreferrer">Powered by WebLLM &nearr;</a></footer>`;
 
   document.body.append(launcher, panel);
   state.panel = panel;
