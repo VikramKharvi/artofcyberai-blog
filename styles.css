@@ -610,7 +610,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .grader-note > p { margin: 0 0 23px; color: var(--red); font: italic 26px var(--serif); }
 .grader-note ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
 .grader-note li { padding: 14px 0 14px 24px; position: relative; border-bottom: 1px solid var(--line); font: 15px/1.45 var(--serif); }
-.grader-note li::before { content: "→"; position: absolute; left: 0; color: var(--red); }
+.grader-note li::before { content: "\2192"; position: absolute; left: 0; color: var(--red); }
 .trajectory-schema { margin: 45px 0; border: 1px solid var(--ink); background: var(--paper-light); box-shadow: 7px 9px 0 var(--ink); }
 .trajectory-schema > div { display: grid; grid-template-columns: 42px 120px 1fr; gap: 16px; align-items: baseline; padding: 18px 22px; border-bottom: 1px solid var(--line); }
 .trajectory-schema > div:last-child { border-bottom: 0; }
