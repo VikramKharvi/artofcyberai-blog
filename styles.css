@@ -862,6 +862,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   display: grid;
   width: min(430px, calc(100vw - 44px));
   max-height: min(720px, calc(100vh - 105px));
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(150px, 1fr) auto auto auto;
   overflow: hidden;
   border: 1px solid var(--ink);
@@ -1050,7 +1051,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .site-chat-panel {
     right: 10px;
     bottom: 74px;
-    width: calc(100vw - 20px);
+    width: calc(100% - 20px);
     max-height: calc(100vh - 90px);
     box-shadow: 6px 7px 0 rgba(28, 33, 29, .72);
   }
