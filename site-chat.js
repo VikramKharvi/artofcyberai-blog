@@ -76,7 +76,7 @@ function chunkDocument(html, url) {
     length = 0;
   };
 
-  main.querySelectorAll("h1, h2, h3, p, li, blockquote, figcaption").forEach((node) => {
+  main.querySelectorAll("h1, h2, h3, p, li, [role='listitem'], blockquote, figcaption").forEach((node) => {
     const text = normalize(node.textContent || "");
     if (!text) return;
     if (/^H[1-3]$/.test(node.tagName)) {
@@ -84,6 +84,8 @@ function chunkDocument(html, url) {
       heading = text;
       return;
     }
+    if (node.matches("p") && node.closest("li, [role='listitem'], blockquote, figcaption")) return;
+    if (buffer.includes(text)) return;
     if (length + text.length > 1050) flush();
     buffer.push(text);
     length += text.length + 1;
@@ -229,7 +231,7 @@ async function answer(question) {
       messages: [
         {
           role: "system",
-          content: "Answer only from the supplied website excerpts. Be concise and technical. Cite supporting excerpts with bracketed numbers such as [1]. If the excerpts do not answer the question, say so clearly."
+          content: "Answer only from the supplied website excerpts. Give 3 to 6 distinct bullets or one short paragraph. Never repeat a point. Cite supporting excerpts with bracketed numbers such as [1]. If the excerpts do not answer the question, say so clearly."
         },
         {
           role: "user",
@@ -237,7 +239,8 @@ async function answer(question) {
         }
       ],
       temperature: 0.2,
-      max_tokens: 360,
+      max_tokens: 240,
+      frequency_penalty: 0.7,
       stream: true
     });
     let answerText = "";

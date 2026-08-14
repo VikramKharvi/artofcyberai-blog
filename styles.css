@@ -961,6 +961,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 }
 
 .site-chat-download:hover { transform: translate(-1px, -1px); box-shadow: 5px 6px 0 var(--ink); }
+.site-chat-download[hidden] { display: none; }
 .site-chat-download:disabled { cursor: wait; opacity: .72; }
 .site-chat-download strong { font: 700 14px/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; }
 .site-chat-download span { font: 400 10px/1.4 var(--mono); }
