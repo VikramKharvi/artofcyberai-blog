@@ -924,8 +924,31 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   padding: 11px 12px;
   border: 1px solid var(--ink);
   background: rgba(244, 234, 216, .94);
-  white-space: pre-wrap;
   font: 400 13px/1.55 var(--sans);
+}
+
+.site-chat-message-role {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--red);
+  font: 700 9px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.site-chat-message-body { display: grid; gap: 8px; }
+.site-chat-message-body p { margin: 0; }
+.site-chat-message-body ul,
+.site-chat-message-body ol { display: grid; gap: 6px; margin: 0; padding-left: 19px; }
+.site-chat-message-body li { padding-left: 2px; }
+
+.site-chat-citation {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--red);
+  font: 700 10px/1 var(--mono);
+  text-decoration: underline;
+  vertical-align: .15em;
 }
 
 .site-chat-message.is-user {
@@ -934,6 +957,8 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   background: var(--green);
   color: var(--paper-light);
 }
+
+.site-chat-message.is-user .site-chat-message-role { color: var(--paper); }
 
 .site-chat-sources {
   display: grid;
@@ -967,14 +992,18 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .site-chat-download span { font: 400 10px/1.4 var(--mono); }
 
 .site-chat-form {
+  min-width: 0;
   padding: 13px 17px 15px;
   border-top: 1px solid var(--ink);
   background: var(--paper);
 }
 
 .site-chat-form label { display: block; margin-bottom: 7px; }
-.site-chat-form > div { display: grid; grid-template-columns: 1fr auto; }
+.site-chat-form > div { display: flex; width: 100%; min-width: 0; }
 .site-chat-form input {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 0;
   min-width: 0;
   padding: 11px 12px;
   border: 1px solid var(--ink);
@@ -986,6 +1015,9 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 }
 
 .site-chat-form button {
+  display: grid;
+  flex: 0 0 58px;
+  place-items: center;
   padding: 0 16px;
   border: 1px solid var(--ink);
   border-radius: 0;

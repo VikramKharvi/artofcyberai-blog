@@ -30,9 +30,9 @@ const PAGE_URLS = [
 ];
 
 const STOP_WORDS = new Set([
-  "about", "after", "also", "and", "are", "because", "been", "before", "being",
+  "about", "after", "also", "an", "and", "are", "as", "at", "because", "been", "before", "being",
   "between", "both", "but", "can", "does", "each", "for", "from", "have", "how",
-  "into", "its", "more", "most", "not", "only", "other", "our", "should", "than",
+  "if", "in", "into", "is", "it", "its", "more", "most", "not", "of", "on", "only", "or", "other", "our", "should", "than", "to",
   "that", "the", "their", "then", "there", "these", "they", "this", "through", "use",
   "using", "was", "what", "when", "where", "which", "while", "with", "would", "you"
 ]);
@@ -127,7 +127,7 @@ function retrieve(chunks, question) {
       score += Math.min(4, countMatches(body, token));
     });
     return { ...chunk, score };
-  }).filter((chunk) => chunk.score > 0).sort((a, b) => b.score - a.score);
+  }).filter((chunk) => chunk.score >= 4).sort((a, b) => b.score - a.score);
 
   const selected = [];
   const pageCounts = new Map();
@@ -138,6 +138,10 @@ function retrieve(chunks, question) {
     pageCounts.set(chunk.url, count + 1);
     if (selected.length === 6) break;
   }
+  const matchedQueryTokens = queryTokens.filter((token) => selected.some((chunk) =>
+    `${chunk.title} ${chunk.heading} ${chunk.text}`.toLowerCase().includes(token)
+  ));
+  if (queryTokens.length > 1 && matchedQueryTokens.length < 2) return [];
   return selected;
 }
 
@@ -148,25 +152,117 @@ function setStatus(text) {
 function addMessage(role, text) {
   const message = document.createElement("div");
   message.className = `site-chat-message is-${role}`;
-  message.textContent = text;
+  const label = document.createElement("span");
+  label.className = "site-chat-message-role";
+  label.textContent = role === "user" ? "Question" : "Answer";
+  const body = document.createElement("div");
+  body.className = "site-chat-message-body";
+  body.textContent = text;
+  message.append(label, body);
   state.messages.append(message);
   state.messages.scrollTop = state.messages.scrollHeight;
-  return message;
+  return body;
 }
 
-function showSources(results) {
-  const sources = document.createElement("div");
-  sources.className = "site-chat-sources";
+function groupSources(results) {
+  const sources = new Map();
+  results.forEach((result) => {
+    if (!sources.has(result.url)) sources.set(result.url, { ...result, excerpts: [] });
+    sources.get(result.url).excerpts.push({ heading: result.heading, text: result.text });
+  });
+  return [...sources.values()];
+}
+
+function appendInlineText(container, text, sources) {
+  const pattern = /\[(\d+)\]/g;
+  let position = 0;
+  for (const match of text.matchAll(pattern)) {
+    container.append(document.createTextNode(text.slice(position, match.index)));
+    const source = sources[Number(match[1]) - 1];
+    if (source) {
+      const citation = document.createElement("a");
+      citation.className = "site-chat-citation";
+      citation.href = source.url;
+      citation.title = source.title;
+      citation.textContent = match[0];
+      container.append(citation);
+    } else {
+      container.append(document.createTextNode(match[0]));
+    }
+    position = match.index + match[0].length;
+  }
+  container.append(document.createTextNode(text.slice(position)));
+}
+
+function renderAnswer(container, text, sources = []) {
+  container.replaceChildren();
+  let list = null;
+  let listType = "";
+  text.split(/\n+/).forEach((rawLine) => {
+    const line = rawLine.trim();
+    if (!line) {
+      list = null;
+      listType = "";
+      return;
+    }
+    const bullet = line.match(/^[-*•]\s+(.+)/);
+    const numbered = line.match(/^\d+[.)]\s+(.+)/);
+    if (bullet || numbered) {
+      const nextType = numbered ? "ol" : "ul";
+      if (!list || listType !== nextType) {
+        list = document.createElement(nextType);
+        listType = nextType;
+        container.append(list);
+      }
+      const item = document.createElement("li");
+      appendInlineText(item, (bullet || numbered)[1], sources);
+      list.append(item);
+      return;
+    }
+    list = null;
+    listType = "";
+    const paragraph = document.createElement("p");
+    appendInlineText(paragraph, line, sources);
+    container.append(paragraph);
+  });
+}
+
+function polishAnswer(text, sources) {
+  const refusal = "I can only answer questions supported by Vikram Kharvi's published field notes.";
+  if (text.includes(refusal)) return refusal;
+
+  const cleaned = text.replace(/(?:\s*\(repeated for multiple steps\)){2,}/gi, " (repeated across multiple steps)");
+  const seen = new Set();
+  const lines = cleaned.split(/\n+/).map((line) => line.trim()).filter((line) => {
+    if (!line) return false;
+    const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).slice(0, 6);
+
+  const hasList = lines.some((line) => /^[-*•]\s+|^\d+[.)]\s+/.test(line));
+  return lines.map((line, index) => {
+    let formatted = line;
+    if (!hasList && lines.length > 2 && index > 0) formatted = `- ${formatted}`;
+    if (sources.length && !/\[\d+\]/.test(formatted)) formatted += " [1]";
+    return formatted;
+  }).join("\n");
+}
+
+function showSources(sources) {
+  const sourceList = document.createElement("div");
+  sourceList.className = "site-chat-sources";
   const label = document.createElement("span");
-  label.textContent = "Sources";
-  sources.append(label);
-  [...new Map(results.map((result) => [result.url, result])).values()].forEach((result, index) => {
+  label.textContent = "Sources from Vikram's field notes";
+  sourceList.append(label);
+  sources.forEach((result, index) => {
     const link = document.createElement("a");
     link.href = result.url;
     link.textContent = `${index + 1}. ${result.title}`;
-    sources.append(link);
+    sourceList.append(link);
   });
-  state.messages.append(sources);
+  state.messages.append(sourceList);
   state.messages.scrollTop = state.messages.scrollHeight;
 }
 
@@ -196,9 +292,10 @@ function fallbackAnswer(results, error) {
     : "The local model could not start. These passages are the closest match:";
   const text = results.length
     ? `${introduction}\n\n${results.slice(0, 3).map((result) => `${result.heading}: ${result.text.slice(0, 280)}...`).join("\n\n")}`
-    : "I could not find a relevant passage in the published field notes.";
-  addMessage("assistant", text);
-  if (results.length) showSources(results);
+    : "I can only answer questions supported by Vikram Kharvi's published field notes. I could not find a relevant source for that question.";
+  const answerNode = addMessage("assistant", "");
+  renderAnswer(answerNode, text);
+  if (results.length) showSources(groupSources(results));
   setStatus("Search mode");
 }
 
@@ -223,15 +320,16 @@ async function answer(question) {
     }
 
     setStatus("Answering locally with WebLLM...");
-    const context = results.map((result, index) =>
-      `[${index + 1}] ${result.title} — ${result.heading}\nURL: ${result.url}\n${result.text}`
+    const sources = groupSources(results);
+    const context = sources.map((source, index) =>
+      `[${index + 1}] ${source.title}\nURL: ${source.url}\n${source.excerpts.map((excerpt) => `${excerpt.heading}: ${excerpt.text}`).join("\n")}`
     ).join("\n\n");
     const responseNode = addMessage("assistant", "");
     const stream = await engine.chat.completions.create({
       messages: [
         {
           role: "system",
-          content: "Answer only from the supplied website excerpts. Give 3 to 6 distinct bullets or one short paragraph. Never repeat a point. Cite supporting excerpts with bracketed numbers such as [1]. If the excerpts do not answer the question, say so clearly."
+          content: "You are the grounded assistant for Vikram Kharvi's field notes. The supplied excerpts are your only source of truth. Never use outside or general knowledge. If the question is not explicitly supported by the excerpts, reply only: 'I can only answer questions supported by Vikram Kharvi's published field notes.' For a supported answer, give 2 to 5 distinct bullets or short paragraphs, cite every factual point with the matching source number such as [1], and never invent or repeat a citation."
         },
         {
           role: "user",
@@ -246,10 +344,12 @@ async function answer(question) {
     let answerText = "";
     for await (const chunk of stream) {
       answerText += chunk.choices[0]?.delta?.content || "";
-      responseNode.textContent = answerText;
+      renderAnswer(responseNode, answerText, sources);
       state.messages.scrollTop = state.messages.scrollHeight;
     }
-    showSources(results);
+    answerText = polishAnswer(answerText, sources);
+    renderAnswer(responseNode, answerText, sources);
+    showSources(sources);
     setStatus("Ready — model and pages stay in your browser");
   } catch (error) {
     addMessage("assistant", `I could not answer that question: ${error.message}`);
