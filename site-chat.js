@@ -267,7 +267,7 @@ async function prepareChat() {
     await buildIndex();
     await createEngine();
     state.ready = true;
-    state.download.hidden = true;
+    state.download.remove();
     state.input.disabled = false;
     state.form.querySelector("button").disabled = false;
     addMessage("assistant", "The local model is ready. Ask a question about any published chapter.");
