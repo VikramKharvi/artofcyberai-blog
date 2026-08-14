@@ -263,7 +263,6 @@ function showSources(sources) {
     sourceList.append(link);
   });
   state.messages.append(sourceList);
-  state.messages.scrollTop = state.messages.scrollHeight;
 }
 
 async function createEngine() {
@@ -345,7 +344,6 @@ async function answer(question) {
     for await (const chunk of stream) {
       answerText += chunk.choices[0]?.delta?.content || "";
       renderAnswer(responseNode, answerText, sources);
-      state.messages.scrollTop = state.messages.scrollHeight;
     }
     answerText = polishAnswer(answerText, sources);
     renderAnswer(responseNode, answerText, sources);
