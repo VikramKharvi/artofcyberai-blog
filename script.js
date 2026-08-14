@@ -83,3 +83,5 @@ window.addEventListener('resize', onScroll, { passive: true });
 reducedMotion.addEventListener?.('change', onScroll);
 updateLocalTime();
 updateScrollEffects();
+
+import("./site-chat.js").catch((error) => console.warn("Site chat unavailable:", error));
