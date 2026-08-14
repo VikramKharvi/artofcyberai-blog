@@ -205,7 +205,7 @@ function renderAnswer(container, text, sources = []) {
       listType = "";
       return;
     }
-    const bullet = line.match(/^[-*•]\s+(.+)/);
+    const bullet = line.match(/^[-*\u2022]\s+(.+)/);
     const numbered = line.match(/^\d+[.)]\s+(.+)/);
     if (bullet || numbered) {
       const nextType = numbered ? "ol" : "ul";
@@ -241,7 +241,7 @@ function polishAnswer(text, sources) {
     return true;
   }).slice(0, 6);
 
-  const hasList = lines.some((line) => /^[-*•]\s+|^\d+[.)]\s+/.test(line));
+  const hasList = lines.some((line) => /^[-*\u2022]\s+|^\d+[.)]\s+/.test(line));
   return lines.map((line, index) => {
     let formatted = line;
     if (!hasList && lines.length > 2 && index > 0) formatted = `- ${formatted}`;
@@ -348,7 +348,7 @@ async function answer(question) {
     answerText = polishAnswer(answerText, sources);
     renderAnswer(responseNode, answerText, sources);
     showSources(sources);
-    setStatus("Ready — model and pages stay in your browser");
+    setStatus("Ready \u2014 model and pages stay in your browser");
   } catch (error) {
     addMessage("assistant", `I could not answer that question: ${error.message}`);
     setStatus("Something went wrong");
@@ -369,7 +369,7 @@ async function prepareChat() {
     state.input.disabled = false;
     state.form.querySelector("button").disabled = false;
     addMessage("assistant", "The browser AI is ready. Ask a question about any published chapter.");
-    setStatus("Ready — inference runs in your browser");
+    setStatus("Ready \u2014 inference runs in your browser");
     state.input.focus();
   } catch (error) {
     state.enginePromise = null;
