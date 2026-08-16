@@ -3,170 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=blog.html">
-  <link rel="canonical" href="https://trainrl.com/blog.html">
-  <meta name="description" content="Vikram Kharvi's systematic research series on evaluations, reinforcement-learning environments, long-horizon agents, and building better language models.">
+  <meta name="description" content="Ten research chapters on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Vikram Kharvi">
+  <link rel="canonical" href="https://trainrl.com/">
   <meta name="theme-color" content="#e7dcc8">
-  <title>Research Series — Vikram Kharvi</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TrainRL">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Post-training Language Models — TrainRL">
+  <meta property="og:description" content="Ten research chapters on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta property="og:url" content="https://trainrl.com/">
+  <meta property="og:image" content="https://artofcyberai.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vikram Kharvi's applied AI research">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Post-training Language Models — TrainRL">
+  <meta name="twitter:description" content="Ten research chapters on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
+  <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://trainrl.com/#blog","url":"https://trainrl.com/","name":"Post-training Language Models — TrainRL","description":"Ten research chapters on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.","inLanguage":"en","image":"https://artofcyberai.com/og-image.png","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"}}</script>
+  <title>Post-training Language Models — TrainRL</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=lifecycle2">
 </head>
 <body class="blog-page blog-index-page">
-  <a class="skip-link" href="#titles">Skip to titles</a>
+  <a class="skip-link" href="#chapters">Skip to chapters</a>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="paper-grain" aria-hidden="true"></div>
 
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
     <div class="nav-links">
-      <a href="blog.html" aria-current="page">Blog</a>
-      <a href="https://artofcyberai.com/#work">Work</a>
-      <a href="blog.html#about">About</a>
+      <a href="https://pre-trained.artofcyberai.com/">Pre-trained</a>
+      <a href="https://trainrl.com/" aria-current="page">Post-trained</a>
+      <a href="https://inference.artofcyberai.com/">Inference</a>
     </div>
-    <a class="nav-site" href="https://artofcyberai.com/" target="_blank" rel="noreferrer">Main site <span aria-hidden="true">↗</span></a>
+    <a class="nav-site" href="https://artofcyberai.com/">Main site <span aria-hidden="true">&nearr;</span></a>
   </nav>
 
   <header class="series-hero">
-    <p class="margin-code" aria-hidden="true">RESEARCH SERIES / 01—09</p>
+    <p class="margin-code" aria-hidden="true">POST-TRAINED / 10 CHAPTERS</p>
     <div class="reveal is-visible">
-      <a class="back-link" href="https://artofcyberai.com/">← Back home</a>
-      <p class="eyebrow"><span></span> Evals · RL environments · agents</p>
-      <h1>Ideas,<br><em>in sequence.</em></h1>
+      <a class="back-link" href="https://artofcyberai.com/">&larr; Back home</a>
+      <p class="eyebrow"><span></span> Reinforcement learning &middot; evaluation &middot; agents</p>
+      <h1>Shape the model<br><em>with feedback.</em></h1>
     </div>
     <div class="series-intro reveal is-visible">
-      <p class="series-count">9 essays · complete series</p>
-      <p>Nine compact field notes on measuring models, designing environments, and building capable agents.</p>
-      <a href="#titles">See every title <span>↓</span></a>
+      <p class="series-count">10 chapters</p>
+      <p>Study the demonstrations, preferences, rewards, graders, environments, and trajectories that turn a base model into a capable specialist.</p>
+      <a href="#chapters">See every chapter <span>&darr;</span></a>
     </div>
   </header>
 
-  <main id="titles">
-    <section class="title-board" aria-labelledby="series-title">
+  <main id="chapters">
+    <section class="title-board tech-board" aria-labelledby="chapters-title">
       <div class="title-board-heading reveal">
         <div>
-          <p class="section-index">Series 01 / Building better LLMs</p>
-          <h2 id="series-title">The publishing map</h2>
+          <p class="section-index">Post-trained / 10 chapters</p>
+          <h2 id="chapters-title">Teach the model what useful means</h2>
         </div>
-        <p>Begin with measurement. End with the work that remains uniquely human.</p>
+        <p>Ten chapters connect post-training methods to the environments, evaluators, users, and trajectories that provide learning signal.</p>
       </div>
 
       <ol class="title-list">
-        <li class="title-item is-published reveal">
-          <a href="post-evals-rl-environments.html">
-            <div class="issue-number">01</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Evals and RL Environments Are the Same Machine With Different Jobs</h3>
-              <p>Prompt, environment, grader: the architecture is shared. The optimization loop is not.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-edge-of-capability.html">
-            <div class="issue-number">02</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Useful Tasks Live at the Edge of Capability</h3>
-              <p>Too easy produces no signal. Too hard produces only zeros. Progress lives in the narrow band between them.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-graders-shape-models.html">
-            <div class="issue-number">03</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>A Grader Is Never Just Measuring the Model</h3>
-              <p>Every scoring rule creates pressure. The model learns the proxy—especially when the proxy is easier than the goal.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-real-users-high-entropy.html">
-            <div class="issue-number">04</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Real Users Have Higher Entropy Than Simulated Ones</h3>
-              <p>Why model-generated users repeat familiar paths—and miss the strange actions that expose real failures.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-long-horizon-context.html">
-            <div class="issue-number">05</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Long-Horizon Agents Need More Than More Context</h3>
-              <p>A larger window delays forgetting. It does not create judgment, durable memory, or a model of the user.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-continual-learning.html">
-            <div class="issue-number">06</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Continual Learning Is the Missing Layer</h3>
-              <p>Files full of notes are not experience. What would it take for an agent to genuinely get better at its workplace?</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-taste-bottleneck.html">
-            <div class="issue-number">07</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>Taste Is Becoming the Bottleneck in Model Evaluation</h3>
-              <p>The easy capabilities have abundant data. What remains is difficult precisely because correctness requires judgment.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-ai-software-engineering.html">
-            <div class="issue-number">08</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>5 min read</span></div>
-              <h3>AI Will Change Software Engineering Before It Replaces Engineers</h3>
-              <p>Automation moves the bottleneck upward—from writing syntax to designing systems, modeling users, and deciding what matters.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-        <li class="title-item is-published reveal">
-          <a href="post-good-agent-trajectory.html">
-            <div class="issue-number">09</div>
-            <div class="issue-copy">
-              <div class="issue-meta"><span>Published · 13 Aug 2026</span><span>6 min read</span></div>
-              <h3>What a Good Agent Trajectory Must Capture</h3>
-              <p>The state, actions, evidence, provenance, and costs required to explain why an outcome happened.</p>
-            </div>
-            <span class="issue-action">Read <b>↗</b></span>
-          </a>
-        </li>
-      </ol>
+              <li class="title-item is-published reveal"><a href="tech-chatgpt-pipeline.html"><div class="issue-number">01</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 01 · 13 Aug 2026</span><span>32 min read</span></div><h3>Post-training a Language Model</h3><p>Assistant contracts, conversation data, preferences, verifiable RL, PPO, DPO, tools, working memory, security boundaries, and evaluation.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-evals-rl-environments.html"><div class="issue-number">02</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 02 · 13 Aug 2026</span><span>14 min read</span></div><h3>Evals and RL Environments Are the Same Machine With Different Jobs</h3><p>Prompt, environment, grader: the architecture is shared. The optimization loop is not.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-edge-of-capability.html"><div class="issue-number">03</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 03 · 13 Aug 2026</span><span>5 min read</span></div><h3>Useful Tasks Live at the Edge of Capability</h3><p>Too easy produces no signal. Too hard produces only zeros. Progress lives in the narrow band between them.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-graders-shape-models.html"><div class="issue-number">04</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 04 · 13 Aug 2026</span><span>5 min read</span></div><h3>A Grader Is Never Just Measuring the Model</h3><p>Every scoring rule creates pressure. The model learns the proxy—especially when the proxy is easier than the goal.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-real-users-high-entropy.html"><div class="issue-number">05</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 05 · 13 Aug 2026</span><span>5 min read</span></div><h3>Real Users Have Higher Entropy Than Simulated Ones</h3><p>Why model-generated users repeat familiar paths—and miss the strange actions that expose real failures.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-long-horizon-context.html"><div class="issue-number">06</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 06 · 13 Aug 2026</span><span>5 min read</span></div><h3>Long-Horizon Agents Need More Than More Context</h3><p>A larger window delays forgetting. It does not create judgment, durable memory, or a model of the user.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-continual-learning.html"><div class="issue-number">07</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 07 · 13 Aug 2026</span><span>5 min read</span></div><h3>Continual Learning Is the Missing Layer</h3><p>Files full of notes are not experience. What would it take for an agent to genuinely get better at its workplace?</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-taste-bottleneck.html"><div class="issue-number">08</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 08 · 13 Aug 2026</span><span>5 min read</span></div><h3>Taste Is Becoming the Bottleneck in Model Evaluation</h3><p>The easy capabilities have abundant data. What remains is difficult precisely because correctness requires judgment.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-ai-software-engineering.html"><div class="issue-number">09</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 09 · 13 Aug 2026</span><span>5 min read</span></div><h3>AI Will Change Software Engineering Before It Replaces Engineers</h3><p>Automation moves the bottleneck upward—from writing syntax to designing systems, modeling users, and deciding what matters.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+              <li class="title-item is-published reveal"><a href="post-good-agent-trajectory.html"><div class="issue-number">10</div><div class="issue-copy"><div class="issue-meta"><span>Chapter 10 · 13 Aug 2026</span><span>6 min read</span></div><h3>What a Good Agent Trajectory Must Capture</h3><p>The state, actions, evidence, provenance, and costs required to explain why an outcome happened.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
+            </ol>
     </section>
   </main>
 
   <footer>
     <div class="footer-main">
-      <p class="section-index">Complete research series</p>
-      <h2>Better models begin with better questions.</h2>
-      <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>↗</span></a>
+      <p class="section-index">Post-trained research</p>
+      <h2>Better agents begin with better feedback.</h2>
+      <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>&nearr;</span></a>
     </div>
     <div class="footer-bottom">
-      <p>Vikram Kharvi · Applied AI Researcher & Engineer</p>
-      <p>California · <span id="local-time">Pacific time</span></p>
-      <a href="#titles">Back to titles ↑</a>
+      <p>Vikram Kharvi &middot; Applied AI Researcher &amp; Engineer</p>
+      <p>California &middot; <span id="local-time">Pacific time</span></p>
+      <a href="#chapters">Back to chapters &uarr;</a>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=lifecycle2"></script>
 </body>
 </html>

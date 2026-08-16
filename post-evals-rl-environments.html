@@ -5,10 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://trainrl.com/post-evals-rl-environments.html">
   <meta name="description" content="Why evaluations and reinforcement-learning environments share the same architecture but serve different optimization loops.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Vikram Kharvi">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TrainRL Post-trained Research">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Evals and RL environments are the same machine with different jobs.">
+  <meta property="og:description" content="Why evaluations and reinforcement-learning environments share the same architecture but serve different optimization loops.">
+  <meta property="og:url" content="https://trainrl.com/post-evals-rl-environments.html">
+  <meta property="og:image" content="https://artofcyberai.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vikram Kharvi — Applied AI research across reinforcement learning, language models, and inference">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evals and RL environments are the same machine with different jobs.">
+  <meta name="twitter:description" content="Why evaluations and reinforcement-learning environments share the same architecture but serve different optimization loops.">
+  <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
+  <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
+  <meta property="article:published_time" content="2026-08-13">
+  <meta property="article:modified_time" content="2026-08-15">
+  <meta property="article:author" content="Vikram Kharvi">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://trainrl.com/post-evals-rl-environments.html#article","url":"https://trainrl.com/post-evals-rl-environments.html","headline":"Evals and RL environments are the same machine with different jobs.","description":"Why evaluations and reinforcement-learning environments share the same architecture but serve different optimization loops.","inLanguage":"en","image":["https://artofcyberai.com/og-image.png"],"datePublished":"2026-08-13","dateModified":"2026-08-15","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"publisher":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://trainrl.com/post-evals-rl-environments.html"},"isPartOf":{"@type":"Blog","@id":"https://trainrl.com/#blog","name":"TrainRL Post-trained Research","url":"https://trainrl.com/"}}</script>
   <meta name="theme-color" content="#e7dcc8">
   <title>Evals and RL Environments Are the Same Machine With Different Jobs — Vikram Kharvi</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=lifecycle2">
 </head>
 <body class="blog-page post-page">
   <a class="skip-link" href="#article">Skip to article</a>
@@ -17,18 +38,14 @@
 
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
-    <div class="nav-links">
-      <a href="blog.html" aria-current="page">Blog</a>
-      <a href="https://artofcyberai.com/#work">Work</a>
-      <a href="blog.html#about">About</a>
-    </div>
+    <div class="nav-links"><a href="https://pre-trained.artofcyberai.com/">Pre-trained</a><a href="https://trainrl.com/" aria-current="page">Post-trained</a><a href="https://inference.artofcyberai.com/">Inference</a></div>
     <a class="nav-site" href="https://artofcyberai.com/" target="_blank" rel="noreferrer">Main site <span aria-hidden="true">↗</span></a>
   </nav>
 
   <header class="blog-hero post-hero">
     <div class="blog-hero-copy reveal is-visible">
-      <a class="back-link" href="blog.html#post-training">← Post-training series</a>
-      <p class="eyebrow"><span></span> Series 02 / Chapter 02</p>
+      <a class="back-link" href="/">← All post-training chapters</a>
+      <p class="eyebrow"><span></span> Post-training / Chapter 02</p>
       <h1>Evals and RL environments are the <em>same machine</em> with different jobs.</h1>
       <p class="blog-deck">Both begin with a task, place a model inside a world, and score what happens. The difference is where that score goes—and what pressure it creates.</p>
       <div class="article-meta">
@@ -237,7 +254,7 @@ while not observation.done:
           <h2 id="close-title">Measurement and learning belong in one conversation.</h2>
           <p>Evals tell researchers where the model is. RL environments create the experiences that move it. Treating them as unrelated products hides their shared structure and makes both harder to design well.</p>
           <p>The most productive loop is continuous: observe a real failure, represent it faithfully, measure it reliably, create diverse experiences around it, and return to the evaluation to see whether behavior genuinely improved.</p>
-          <a class="button button-primary" href="blog.html#post-training">View the post-training series <span aria-hidden="true">→</span></a>
+          <a class="button button-primary" href="/">View all post-training chapters <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </article>
@@ -251,7 +268,7 @@ while not observation.done:
 
   <footer>
     <div class="footer-main">
-      <p class="section-index">Series 02 / Chapter 02</p>
+      <p class="section-index">Post-training / Chapter 02</p>
       <h2>Build the signal you want to learn from.</h2>
       <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>↗</span></a>
     </div>
@@ -263,6 +280,6 @@ while not observation.done:
   </footer>
 
   <script src="medium-links.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=lifecycle2"></script>
 </body>
 </html>

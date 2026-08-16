@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://trainrl.com/inference-speculative-decoding.html">
+  <link rel="canonical" href="https://inference.artofcyberai.com/inference-speculative-decoding.html">
   <meta name="description" content="Apply fused kernels, prefix reuse, and speculative decoding to the phase that actually dominates latency.">
-  <meta name="theme-color" content="#e7dcc8"><title>Series 03 / Chapter 08: Speculative Decoding and Latency Levers - Vikram Kharvi</title><link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="robots" content="noindex, follow">
+  <meta name="author" content="Vikram Kharvi">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TrainRL">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Speculative Decoding and Latency Levers">
+  <meta property="og:description" content="Apply fused kernels, prefix reuse, and speculative decoding to the phase that actually dominates latency.">
+  <meta property="og:url" content="https://inference.artofcyberai.com/inference-speculative-decoding.html">
+  <meta property="og:image" content="https://artofcyberai.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vikram Kharvi — Applied AI research across reinforcement learning, language models, and inference">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Speculative Decoding and Latency Levers">
+  <meta name="twitter:description" content="Apply fused kernels, prefix reuse, and speculative decoding to the phase that actually dominates latency.">
+  <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
+  <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
+  <meta property="article:published_time" content="2026-08-13">
+  <meta property="article:modified_time" content="2026-08-15">
+  <meta property="article:author" content="Vikram Kharvi">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://trainrl.com/inference-speculative-decoding.html#article","url":"https://trainrl.com/inference-speculative-decoding.html","headline":"Speculative Decoding and Latency Levers","description":"Apply fused kernels, prefix reuse, and speculative decoding to the phase that actually dominates latency.","inLanguage":"en","image":["https://artofcyberai.com/og-image.png"],"datePublished":"2026-08-13","dateModified":"2026-08-15","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"publisher":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://trainrl.com/inference-speculative-decoding.html"},"isPartOf":{"@type":"Blog","@id":"https://trainrl.com/blog.html#blog","name":"TrainRL Model Lifecycle Series","url":"https://trainrl.com/blog.html"}}</script>
+  <meta name="theme-color" content="#e7dcc8"><title>Series 03 / Chapter 08: Speculative Decoding and Latency Levers - Vikram Kharvi</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><script src="legacy-route.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="blog-page post-page chapter-page">

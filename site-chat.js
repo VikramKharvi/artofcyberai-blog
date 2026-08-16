@@ -1,8 +1,4 @@
 const PAGE_URLS = [
-  "tech-llm-system-map.html",
-  "tech-tokenization-model-design.html",
-  "tech-transformer-architecture.html",
-  "tech-mixture-of-experts.html",
   "tech-chatgpt-pipeline.html",
   "post-evals-rl-environments.html",
   "post-edge-of-capability.html",
@@ -12,17 +8,7 @@ const PAGE_URLS = [
   "post-continual-learning.html",
   "post-taste-bottleneck.html",
   "post-ai-software-engineering.html",
-  "post-good-agent-trajectory.html",
-  "inference-service-contract.html",
-  "inference-request-path.html",
-  "inference-prefill-decode.html",
-  "inference-kv-cache.html",
-  "inference-continuous-batching.html",
-  "inference-parallelism.html",
-  "inference-quantization.html",
-  "inference-speculative-decoding.html",
-  "inference-capacity-reliability.html",
-  "inference-load-testing.html"
+  "post-good-agent-trajectory.html"
 ];
 
 const STOP_WORDS = new Set([
@@ -414,6 +400,7 @@ function initializeChat() {
   const launcher = document.createElement("button");
   launcher.className = "site-chat-launcher";
   launcher.type = "button";
+  launcher.setAttribute("aria-label", "Ask the field notes");
   launcher.setAttribute("aria-haspopup", "dialog");
   launcher.innerHTML = "<span>Ask the field notes</span><b aria-hidden=\"true\">AI</b>";
 

@@ -1046,8 +1046,16 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
 .site-chat-meta a { margin-left: auto; color: var(--green); }
 
 @media (max-width: 620px) {
-  .site-chat-launcher { right: 12px; bottom: 12px; padding-left: 13px; }
-  .site-chat-launcher span { max-width: 110px; line-height: 1.25; }
+  .site-chat-launcher { right: 12px; bottom: 12px; gap: 0; padding: 5px; }
+  .site-chat-launcher span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .site-chat-launcher b { width: 42px; height: 42px; }
   .site-chat-panel {
     right: 10px;
     bottom: 74px;
