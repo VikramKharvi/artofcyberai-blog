@@ -1,5 +1,4 @@
 const PAGE_URLS = [
-  "blog.html",
   "tech-llm-system-map.html",
   "tech-tokenization-model-design.html",
   "tech-transformer-architecture.html",
@@ -14,7 +13,6 @@ const PAGE_URLS = [
   "post-taste-bottleneck.html",
   "post-ai-software-engineering.html",
   "post-good-agent-trajectory.html",
-  "tech-model-serving-inference.html",
   "inference-service-contract.html",
   "inference-request-path.html",
   "inference-prefill-decode.html",

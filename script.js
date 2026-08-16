@@ -84,4 +84,4 @@ reducedMotion.addEventListener?.('change', onScroll);
 updateLocalTime();
 updateScrollEffects();
 
-import("./site-chat.js?v=browser-ai2").catch((error) => console.warn("Site chat unavailable:", error));
+import("./site-chat.js?v=browser-ai3").catch((error) => console.warn("Site chat unavailable:", error));
