@@ -4,8 +4,6 @@ const PAGE_URLS = [
   "tech-tokenization-model-design.html",
   "tech-transformer-architecture.html",
   "tech-mixture-of-experts.html",
-  "tech-build-gpt.html",
-  "tech-reproduce-gpt2.html",
   "tech-chatgpt-pipeline.html",
   "post-evals-rl-environments.html",
   "post-edge-of-capability.html",
@@ -46,7 +44,10 @@ const state = {
   form: null,
   input: null,
   download: null,
-  ready: false
+  launcher: null,
+  ready: false,
+  searchOnly: false,
+  engineError: null
 };
 
 function normalize(text) {
@@ -311,9 +312,15 @@ async function answer(question) {
     }
 
     let engine;
+    if (state.searchOnly) {
+      fallbackAnswer(results, state.engineError);
+      return;
+    }
     try {
       engine = await createEngine();
     } catch (error) {
+      state.searchOnly = true;
+      state.engineError = error;
       fallbackAnswer(results, error);
       return;
     }
@@ -363,32 +370,46 @@ async function prepareChat() {
   state.download.querySelector("strong").textContent = "Preparing browser AI...";
   try {
     await buildIndex();
-    await createEngine();
-    state.ready = true;
-    state.download.remove();
-    state.input.disabled = false;
-    state.form.querySelector("button").disabled = false;
-    addMessage("assistant", "The browser AI is ready. Ask a question about any published chapter.");
-    setStatus("Ready \u2014 inference runs in your browser");
-    state.input.focus();
   } catch (error) {
-    state.enginePromise = null;
+    state.chunksPromise = null;
     state.download.disabled = false;
     state.download.querySelector("strong").textContent = "Try downloading again";
-    addMessage("assistant", `The browser AI could not start: ${error.message}`);
-    setStatus("A WebGPU-capable browser is required");
+    addMessage("assistant", `The field notes could not be indexed: ${error.message}`);
+    setStatus("Something went wrong");
+    return;
   }
+
+  try {
+    await createEngine();
+    state.searchOnly = false;
+    state.engineError = null;
+    addMessage("assistant", "The browser AI is ready. Ask a question about any published chapter.");
+    setStatus("Ready \u2014 inference runs in your browser");
+  } catch (error) {
+    state.enginePromise = null;
+    state.searchOnly = true;
+    state.engineError = error;
+    addMessage("assistant", "This browser cannot run the local model, so search mode is ready instead. Ask a question to retrieve the closest passages from the field notes.");
+    setStatus("Search mode");
+  }
+
+  state.ready = true;
+  state.download.remove();
+  state.input.disabled = false;
+  state.form.querySelector("button").disabled = false;
+  state.input.focus();
 }
 
 function openPanel() {
   state.panel.hidden = false;
   requestAnimationFrame(() => state.panel.classList.add("is-open"));
-  state.input.focus();
+  (state.input.disabled ? state.download : state.input).focus();
 }
 
 function closePanel() {
   state.panel.classList.remove("is-open");
   window.setTimeout(() => { state.panel.hidden = true; }, 180);
+  state.launcher.focus();
 }
 
 function initializeChat() {
@@ -421,6 +442,7 @@ function initializeChat() {
 
   document.body.append(launcher, panel);
   state.panel = panel;
+  state.launcher = launcher;
   state.messages = panel.querySelector(".site-chat-messages");
   state.status = panel.querySelector(".site-chat-status");
   state.form = panel.querySelector(".site-chat-form");
