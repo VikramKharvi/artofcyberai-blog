@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vikram Kharvi's technical series on pre-training language models, shaping them through post-training, and serving them under real latency and reliability constraints.">
+  <meta name="description" content="Vikram Kharvi's research notes on pre-training language models, post-training with feedback, and inference under real latency and reliability constraints.">
   <meta name="robots" content="noindex, follow">
   <meta name="author" content="Vikram Kharvi">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="TrainRL">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="Model Lifecycle Series — Vikram Kharvi">
-  <meta property="og:description" content="Vikram Kharvi&#x27;s technical series on pre-training language models, shaping them through post-training, and serving them under real latency and reliability constraints.">
+  <meta property="og:title" content="Model Lifecycle Research — Vikram Kharvi">
+  <meta property="og:description" content="Vikram Kharvi&#x27;s research notes on pre-training language models, post-training with feedback, and inference under real latency and reliability constraints.">
   <meta property="og:url" content="https://trainrl.com/">
   <meta property="og:image" content="https://artofcyberai.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Vikram Kharvi — Applied AI research across reinforcement learning, language models, and inference">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Model Lifecycle Series — Vikram Kharvi">
-  <meta name="twitter:description" content="Vikram Kharvi&#x27;s technical series on pre-training language models, shaping them through post-training, and serving them under real latency and reliability constraints.">
+  <meta name="twitter:title" content="Model Lifecycle Research — Vikram Kharvi">
+  <meta name="twitter:description" content="Vikram Kharvi&#x27;s research notes on pre-training language models, post-training with feedback, and inference under real latency and reliability constraints.">
   <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
   <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://trainrl.com/#blog","url":"https://trainrl.com/","name":"Model Lifecycle Series — Vikram Kharvi","description":"Vikram Kharvi's technical series on pre-training language models, shaping them through post-training, and serving them under real latency and reliability constraints.","inLanguage":"en","image":"https://artofcyberai.com/og-image.png","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://trainrl.com/#blog","url":"https://trainrl.com/","name":"Model Lifecycle Research — Vikram Kharvi","description":"Vikram Kharvi's research notes on pre-training language models, post-training with feedback, and inference under real latency and reliability constraints.","inLanguage":"en","image":"https://artofcyberai.com/og-image.png","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"}}</script>
   <link rel="canonical" href="https://trainrl.com/">
   <meta name="theme-color" content="#e7dcc8">
-  <title>Model Lifecycle Series — Vikram Kharvi</title>
+  <title>Model Lifecycle Research — Vikram Kharvi</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"><script src="legacy-route.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -36,7 +36,7 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
     <div class="nav-links">
-      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="blog.html" aria-current="page">Archive</a>
       <a href="https://artofcyberai.com/#work">Work</a>
       <a href="#about">About</a>
     </div>
@@ -44,14 +44,14 @@
   </nav>
 
   <header class="series-hero">
-    <p class="margin-code" aria-hidden="true">MODEL LIFECYCLE / SERIES 01—03</p>
+    <p class="margin-code" aria-hidden="true">MODEL LIFECYCLE / THREE RESEARCH PATHS</p>
     <div class="reveal is-visible">
       <a class="back-link" href="https://artofcyberai.com/">← Back home</a>
-      <p class="eyebrow"><span></span> Pre-training · post-training · serving</p>
+      <p class="eyebrow"><span></span> Pre-training · post-training · inference</p>
       <h1>Research across the<br><em>model lifecycle.</em></h1>
     </div>
     <div class="series-intro reveal is-visible">
-      <p class="series-count">3 series · 35 chapters</p>
+      <p class="series-count">3 research paths · 35 chapters</p>
       <p>Build the base model, shape its behavior, then serve it under real latency and reliability constraints.</p>
       <a href="#titles">See every title <span>↓</span></a>
     </div>
@@ -60,7 +60,7 @@
   <main id="titles">
     <section class="title-board" id="tech-notes" aria-labelledby="pretraining-series-title">
       <div class="title-board-heading reveal">
-        <div><p class="section-index">Series 01 / Pre-training models</p><h2 id="pretraining-series-title">Build the base model</h2></div>
+        <div><p class="section-index">Pre-trained / 15 chapters</p><h2 id="pretraining-series-title">Build the base model</h2></div>
         <p>Fifteen focused chapters move from text representation and data design to architecture, sparse experts, optimization, distributed training, and reproducible evidence.</p>
       </div>
 
@@ -85,7 +85,7 @@
 
     <section class="title-board tech-board" id="post-training" aria-labelledby="posttraining-series-title">
       <div class="title-board-heading reveal">
-        <div><p class="section-index">Series 02 / Post-training models</p><h2 id="posttraining-series-title">Shape the model with feedback</h2></div>
+        <div><p class="section-index">Post-trained / 10 chapters</p><h2 id="posttraining-series-title">Shape the model with feedback</h2></div>
         <p>Demonstrations, preferences, rewards, graders, environments, and trajectories that turn a base model into a capable assistant.</p>
       </div>
 
@@ -105,7 +105,7 @@
 
     <section class="title-board tech-board" id="serving" aria-labelledby="serving-series-title">
       <div class="title-board-heading reveal">
-        <div><p class="section-index">Series 03 / Model serving</p><h2 id="serving-series-title">Put the model into production</h2></div>
+        <div><p class="section-index">Inference / 10 chapters</p><h2 id="serving-series-title">Put the model into production</h2></div>
         <p>Ten focused chapters turn a checkpoint into a reliable service by connecting latency objectives, request execution, cache economics, scheduling, parallelism, numerical formats, and operational evidence.</p>
       </div>
 
@@ -144,8 +144,8 @@
 
   <footer>
     <div class="footer-main">
-      <p class="section-index">Complete model-lifecycle series</p>
-      <h2>Better models begin with better questions.</h2>
+      <p class="section-index">35 chapters across three research paths</p>
+      <h2>Pre-training, post-training, and inference.</h2>
       <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>↗</span></a>
     </div>
     <div class="footer-bottom">
