@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://trainrl.com/blog.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-llm-system-map.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-tokenization-model-design.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-transformer-architecture.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-mixture-of-experts.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-chatgpt-pipeline.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-evals-rl-environments.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-edge-of-capability.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-graders-shape-models.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-real-users-high-entropy.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-long-horizon-context.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-continual-learning.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-taste-bottleneck.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-ai-software-engineering.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/post-good-agent-trajectory.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/tech-model-serving-inference.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-service-contract.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-request-path.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-prefill-decode.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-kv-cache.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-continuous-batching.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-parallelism.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-quantization.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-speculative-decoding.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-capacity-reliability.html</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://trainrl.com/inference-load-testing.html</loc><lastmod>2026-08-15</lastmod></url>
+</urlset>
