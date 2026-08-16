@@ -365,13 +365,13 @@ async function answer(question) {
 
 async function prepareChat() {
   state.download.disabled = true;
-  state.download.querySelector("strong").textContent = "Preparing browser AI...";
+  state.download.querySelector("strong").textContent = navigator.gpu ? "Preparing browser AI..." : "Preparing search mode...";
   try {
     await buildIndex();
   } catch (error) {
     state.chunksPromise = null;
     state.download.disabled = false;
-    state.download.querySelector("strong").textContent = "Try downloading again";
+    state.download.querySelector("strong").textContent = navigator.gpu ? "Try downloading again" : "Try search again";
     addMessage("assistant", `The field notes could not be indexed: ${error.message}`);
     setStatus("Something went wrong");
     return;
@@ -446,6 +446,13 @@ function initializeChat() {
   state.form = panel.querySelector(".site-chat-form");
   state.input = panel.querySelector("input");
   state.download = panel.querySelector(".site-chat-download");
+
+  if (!navigator.gpu) {
+    state.messages.firstElementChild.textContent = "This browser cannot run the local model. Enable search mode to retrieve passages from the published field notes without a model download.";
+    state.download.querySelector("strong").textContent = "Enable search mode";
+    state.download.querySelector("span").textContent = "No model download required";
+    setStatus("Search mode available without WebGPU");
+  }
 
   launcher.addEventListener("click", openPanel);
   state.download.addEventListener("click", prepareChat);
