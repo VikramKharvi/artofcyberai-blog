@@ -9,7 +9,6 @@
   const inferenceBase = "https://inference.artofcyberai.com/";
   const preRoutes = new Set([
     "tech-llm-system-map.html",
-    "tech-tokenization-model-design.html",
     "tech-transformer-architecture.html",
     "tech-mixture-of-experts.html",
   ]);
@@ -38,16 +37,18 @@
         : hash === "#post-training"
           ? "https://trainrl.com/"
           : "https://trainrl.com/";
+  } else if (path === "tech-tokenization-model-design.html") {
+    target = preBase + "pre-training-llm.html";
   } else if (preRoutes.has(path)) {
     target = preBase + path;
   } else if (inferenceRoutes.has(path)) {
     target = inferenceBase + path;
   } else if (path === "tech-build-gpt.html") {
     preserveHash = false;
-    target = preBase + "tech-tokenization-model-design.html#attention";
+    target = preBase + "pre-training-llm.html#attention";
   } else if (path === "tech-reproduce-gpt2.html") {
     preserveHash = false;
-    target = preBase + "tech-tokenization-model-design.html#training";
+    target = preBase + "pre-training-llm.html#training";
   } else if (path === "tech-model-serving-inference.html") {
     preserveHash = false;
     const servingAnchors = {
