@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ten research blogs on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta name="description" content="TrainRL is Vikram Kharvi's research guide to post-training language models with demonstrations, preferences, reinforcement learning, evaluation, and agents.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Vikram Kharvi">
   <link rel="canonical" href="https://trainrl.com/">
@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="TrainRL">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Post-training Language Models — TrainRL">
-  <meta property="og:description" content="Ten research blogs on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta property="og:description" content="A research guide to post-training language models with demonstrations, preferences, reinforcement learning, evaluation, and agents.">
   <meta property="og:url" content="https://trainrl.com/">
   <meta property="og:image" content="https://artofcyberai.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -20,51 +20,82 @@
   <meta property="og:image:alt" content="Vikram Kharvi's applied AI research">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Post-training Language Models — TrainRL">
-  <meta name="twitter:description" content="Ten research blogs on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.">
+  <meta name="twitter:description" content="A research guide to post-training language models with demonstrations, preferences, reinforcement learning, evaluation, and agents.">
   <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
   <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://trainrl.com/#blog","url":"https://trainrl.com/","name":"Post-training Language Models — TrainRL","description":"Ten research blogs on reinforcement learning environments, graders, real-user feedback, continual learning, evaluation, and specialist AI agents.","inLanguage":"en","image":"https://artofcyberai.com/og-image.png","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://trainrl.com/#blog","url":"https://trainrl.com/","name":"Post-training Language Models — TrainRL","description":"TrainRL is Vikram Kharvi's research guide to post-training language models with demonstrations, preferences, reinforcement learning, evaluation, and agents.","inLanguage":"en","image":"https://artofcyberai.com/og-image.png","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"}}</script>
   <title>Post-training Language Models — TrainRL</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=lifecycle2">
+  <link rel="stylesheet" href="styles.css?v=postlanding1">
 </head>
-<body class="blog-page blog-index-page">
+<body class="blog-page blog-index-page post-landing-page">
   <a class="skip-link" href="#chapters">Skip to blogs</a>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="paper-grain" aria-hidden="true"></div>
 
   <nav class="site-nav" aria-label="Primary navigation">
-    <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
+    <a class="monogram brand-lockup" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home"><span class="monogram-mark">VK<span class="ink-dot"></span></span><span class="brand-wordmark">Art of Cyber AI</span></a>
     <div class="nav-links">
       <a href="https://pre-trained.artofcyberai.com/">Pre-trained</a>
       <a href="https://trainrl.com/" aria-current="page">Post-trained</a>
       <a href="https://inference.artofcyberai.com/">Inference</a>
     </div>
-    <a class="nav-site" href="https://artofcyberai.com/">Main site <span aria-hidden="true">&nearr;</span></a>
+    <a class="nav-site" href="https://artofcyberai.com/">Home <span aria-hidden="true">&nearr;</span></a>
   </nav>
 
-  <header class="series-hero">
+  <header class="series-hero post-landing-hero">
     <p class="margin-code" aria-hidden="true">POST-TRAINED / 10 BLOGS</p>
     <div class="reveal is-visible">
-      <a class="back-link" href="https://artofcyberai.com/">&larr; Back home</a>
-      <p class="eyebrow"><span></span> Reinforcement learning &middot; evaluation &middot; agents</p>
-      <h1>Shape the model<br><em>with feedback.</em></h1>
+      <p class="eyebrow"><span></span> TrainRL &middot; Post-training research</p>
+      <h1>From learning signal<br><em>to useful behavior.</em></h1>
+      <p class="landing-deck">A research guide to demonstrations, preferences, verifiable rewards, evaluation environments, and the trajectories that shape specialist AI agents.</p>
+      <div class="landing-actions">
+        <a class="button button-primary" href="tech-chatgpt-pipeline.html">Start with the full guide <span aria-hidden="true">&nearr;</span></a>
+        <a class="text-link" href="#chapters">Browse all 10 blogs <span aria-hidden="true">&darr;</span></a>
+      </div>
     </div>
-    <div class="series-intro reveal is-visible">
-      <p class="series-count">10 blogs</p>
-      <p>Study the demonstrations, preferences, rewards, graders, environments, and trajectories that turn a base model into a capable specialist.</p>
-      <a href="#chapters">See every blog <span>&darr;</span></a>
-    </div>
+    <aside class="post-loop reveal is-visible" aria-label="The post-training loop">
+      <p class="series-count">The post-training loop</p>
+      <ol>
+        <li><span>01</span><strong>Demonstrate</strong><small>Specify the behavior.</small></li>
+        <li><span>02</span><strong>Compare</strong><small>Make preferences explicit.</small></li>
+        <li><span>03</span><strong>Optimize</strong><small>Learn from rewards and outcomes.</small></li>
+        <li><span>04</span><strong>Evaluate</strong><small>Test outside the training loop.</small></li>
+      </ol>
+    </aside>
   </header>
 
   <main id="chapters">
+    <section class="first-issue post-start reveal" aria-labelledby="start-title">
+      <p class="section-index">Start here / Blog 01</p>
+      <h2 id="start-title">The complete post-training pipeline.</h2>
+      <p>Begin with the end-to-end map: assistant contracts, supervised fine-tuning, preference data, reward models, verifiable RL, PPO, DPO, tools, memory, security boundaries, and independent evaluation.</p>
+      <a class="button button-primary" href="tech-chatgpt-pipeline.html">Read the foundational guide <span aria-hidden="true">&nearr;</span></a>
+    </section>
+
+    <section class="series-method post-research-map" aria-labelledby="research-map-title">
+      <div class="landing-section-heading reveal">
+        <div>
+          <p class="section-index">Research map / Four connected questions</p>
+          <h2 id="research-map-title">What post-training must solve</h2>
+        </div>
+        <p>Follow one topic or read from the full pipeline into evaluation, continual learning, and agent trajectories.</p>
+      </div>
+      <div class="method-grid post-method-grid">
+        <a class="reveal" href="tech-chatgpt-pipeline.html"><span>01 / Behavior</span><strong>What should the model learn?</strong><p>Assistant contracts, demonstrations, preference pairs, and optimization objectives.</p><b>Read the pipeline &nearr;</b></a>
+        <a class="reveal" href="post-evals-rl-environments.html"><span>02 / Environments</span><strong>Where does learning happen?</strong><p>Tasks, environments, graders, and the difference between evaluation and optimization.</p><b>Explore environments &nearr;</b></a>
+        <a class="reveal" href="post-graders-shape-models.html"><span>03 / Measurement</span><strong>What pressure does the grader create?</strong><p>Signals, proxies, edge-of-capability tasks, real users, and evaluation judgment.</p><b>Study evaluation &nearr;</b></a>
+        <a class="reveal" href="post-good-agent-trajectory.html"><span>04 / Agents</span><strong>What evidence makes improvement possible?</strong><p>Long-horizon context, continual learning, software work, and accountable trajectories.</p><b>Follow the trajectory &nearr;</b></a>
+      </div>
+    </section>
+
     <section class="title-board tech-board" aria-labelledby="chapters-title">
       <div class="title-board-heading reveal">
         <div>
-          <p class="section-index">Post-trained / 10 blogs</p>
-          <h2 id="chapters-title">Teach the model what useful means</h2>
+          <p class="section-index">Research archive / 10 blogs</p>
+          <h2 id="chapters-title">Browse every field note</h2>
         </div>
-        <p>Ten blogs connect post-training methods to the environments, evaluators, users, and trajectories that provide learning signal.</p>
+        <p>Read the complete post-training collection, from the language-model pipeline to the evidence required for reliable agent improvement.</p>
       </div>
 
       <ol class="title-list">
@@ -80,12 +111,28 @@
               <li class="title-item is-published reveal"><a href="post-good-agent-trajectory.html"><div class="issue-number">10</div><div class="issue-copy"><div class="issue-meta"><span>Blog 10 · 13 Aug 2026</span><span>6 min read</span></div><h3>What a Good Agent Trajectory Must Capture</h3><p>The state, actions, evidence, provenance, and costs required to explain why an outcome happened.</p></div><span class="issue-action">Read <b>↗</b></span></a></li>
             </ol>
     </section>
+
+    <section class="network-map" aria-labelledby="network-title">
+      <div class="landing-section-heading reveal">
+        <div>
+          <p class="section-index">Across Art of Cyber AI</p>
+          <h2 id="network-title">Explore the full model lifecycle</h2>
+        </div>
+        <p>Move between the personal homepage and the three independent research destinations without losing your place in the larger system.</p>
+      </div>
+      <nav class="network-grid" aria-label="Art of Cyber AI destinations">
+        <a class="reveal" href="https://artofcyberai.com/"><span>Home</span><strong>Art of Cyber AI</strong><p>Experience, ideas, selected research, and ways to connect.</p><b>Visit home &nearr;</b></a>
+        <a class="reveal" href="https://pre-trained.artofcyberai.com/"><span>01 / Before</span><strong>Pre-trained</strong><p>Data, tokenization, architecture, scaling, optimization, and training systems.</p><b>Explore pre-training &nearr;</b></a>
+        <a class="reveal is-current" href="https://trainrl.com/" aria-current="page"><span>02 / Current</span><strong>Post-trained</strong><p>Feedback, reinforcement learning, evaluation, alignment, and agent improvement.</p><b>You are here</b></a>
+        <a class="reveal" href="https://inference.artofcyberai.com/"><span>03 / After</span><strong>Inference</strong><p>Serving, KV-cache management, batching, latency, throughput, and reliability.</p><b>Explore inference &nearr;</b></a>
+      </nav>
+    </section>
   </main>
 
   <footer>
     <div class="footer-main">
-      <p class="section-index">Post-trained research</p>
-      <h2>Better agents begin with better feedback.</h2>
+      <p class="section-index">TrainRL / Post-trained research</p>
+      <h2>Better behavior needs better learning signals.</h2>
       <a class="footer-email" href="mailto:vikramkrishnakharvi@gmail.com">vikramkrishnakharvi@gmail.com <span>&nearr;</span></a>
     </div>
     <div class="footer-bottom">
@@ -95,6 +142,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=lifecycle2"></script>
+  <script src="script.js?v=postlanding1"></script>
 </body>
 </html>
