@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://trainrl.com/post-training-stack.html">
+  <meta name="description" content="A research guide to the LLM post-training stack: SFT, synthetic data, preference optimization, RLHF, RLVR, agents, safety, and continual learning.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Vikram Kharvi">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TrainRL Post-trained Research">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Post-training is a stack, not a single technique.">
+  <meta property="og:description" content="A research guide to the full post-training stack: what each method changes, when it is useful, and when it is the wrong tool.">
+  <meta property="og:url" content="https://trainrl.com/post-training-stack.html">
+  <meta property="og:image" content="https://artofcyberai.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vikram Kharvi — Applied AI research across reinforcement learning, language models, and inference">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Post-training is a stack, not a single technique.">
+  <meta name="twitter:description" content="A research guide to the full post-training stack: what each method changes, when it is useful, and when it is the wrong tool.">
+  <meta name="twitter:image" content="https://artofcyberai.com/og-image.png">
+  <link rel="alternate" type="application/atom+xml" title="Art of Cyber AI research feed" href="https://artofcyberai.com/feed.xml">
+  <meta property="article:published_time" content="2026-08-13">
+  <meta property="article:modified_time" content="2026-08-16">
+  <meta property="article:author" content="Vikram Kharvi">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://trainrl.com/post-training-stack.html#article","url":"https://trainrl.com/post-training-stack.html","headline":"Post-training is a stack, not a single technique.","description":"A research guide to the full post-training stack: what each method changes, when it is useful, and when it is the wrong tool.","inLanguage":"en","image":["https://artofcyberai.com/og-image.png"],"datePublished":"2026-08-13","dateModified":"2026-08-16","author":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"publisher":{"@type":"Person","name":"Vikram Kharvi","url":"https://artofcyberai.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://trainrl.com/post-training-stack.html"},"isPartOf":{"@type":"Blog","@id":"https://trainrl.com/#blog","name":"TrainRL Post-trained Research","url":"https://trainrl.com/"}}</script>
+  <meta name="theme-color" content="#e7dcc8">
+  <title>Post-training Is a Stack - Vikram Kharvi</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=poststack1">
+</head>
+<body class="blog-page post-page chapter-page">
+  <a class="skip-link" href="#article">Skip to blog</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="monogram" href="https://artofcyberai.com/" aria-label="Art of Cyber AI, home">VK<span class="ink-dot"></span></a>
+    <div class="nav-links"><a href="https://pre-trained.artofcyberai.com/">Pre-trained</a><a href="https://trainrl.com/" aria-current="page">Post-trained</a><a href="https://inference.artofcyberai.com/">Inference</a></div>
+    <a class="nav-site" href="https://artofcyberai.com/" target="_blank" rel="noreferrer">Main site <span aria-hidden="true">↗</span></a>
+  </nav>
+  <header class="blog-hero post-hero">
+    <div class="blog-hero-copy reveal is-visible">
+      <a class="back-link" href="/">← All post-training blogs</a>
+      <p class="eyebrow"><span></span> Post-training / Blog 01</p>
+      <h1>Post-training is a stack, <em>not a single technique.</em></h1>
+      <p class="blog-deck">SFT, DPO, RLHF, RLVR, distillation, and continual learning are not synonyms. They are different parts of a control stack for turning a base model into a useful policy.</p>
+      <div class="article-meta"><span>Vikram Kharvi</span><span>13 Aug 2026</span><span>15 min read</span></div>
+    </div>
+    <div class="rl-visual reveal is-visible" data-parallax="0.025" aria-label="Paper cover for Blog 01 about the post-training stack">
+      <div class="issue-paper"><p>POST-TRAINING / BLOG 01</p><span class="issue-paper-number">01</span><div class="issue-paper-copy"><small>THE FULL MAP</small><strong>SHAPE THE POLICY</strong><p>SIGNAL → OBJECTIVE → UPDATE → EVIDENCE</p></div><ul><li>SFT</li><li>Preferences</li><li>RL</li></ul></div>
+      <span class="tape tape-top"></span><span class="tape tape-bottom"></span>
+    </div>
+  </header>
+  <main class="blog-main" id="article">
+    <article class="blog-article chapter-article">
+      <p class="article-lede reveal"><span>Pre-training learns a distribution; post-training chooses a policy.</span> The term covers the data, objectives, parameter updates, feedback loops, and evaluations used to make a broad next-token model useful, steerable, safe, specialized, or cheaper to run.</p>
+      <div class="article-rule reveal"><span>POST-TRAINING MODELS</span><i></i><span>THE COMPLETE MAP</span></div>
+      <nav class="chapter-toc reveal" aria-label="Blog contents">
+        <span>In this blog</span>
+        <ol>
+          <li><a href="#map">The map</a></li><li><a href="#contract">Contract + evals</a></li><li><a href="#continued">Continued pretraining</a></li><li><a href="#sft">SFT</a></li>
+          <li><a href="#synthetic">Synthetic data</a></li><li><a href="#preferences">Preference optimization</a></li><li><a href="#reward">Reward models</a></li><li><a href="#rlhf">RLHF + RLAIF</a></li>
+          <li><a href="#rlvr">Verifiable RL</a></li><li><a href="#agents">Agents + process</a></li><li><a href="#safety">Safety alignment</a></li><li><a href="#updates">Full FT + PEFT</a></li>
+          <li><a href="#distillation">Distillation</a></li><li><a href="#merging">Model merging</a></li><li><a href="#continual">Continual learning</a></li><li><a href="#decision">Decision guide</a></li>
+        </ol>
+      </nav>
+      <section class="article-section reveal" id="map">
+        <aside><span>MAP</span><p>The umbrella</p></aside>
+        <div>
+          <h2>Post-training hides several different decisions.</h2>
+          <p>A pretrained model has broad statistical capability but no complete assistant contract. It does not inherently know which user intent to prioritize, when to call a tool, what an organization considers safe, or which evidence proves that a long workflow is finished. Post-training supplies those decisions.</p>
+          <p>There is no standards body that defines one exhaustive boundary. A practical definition is: <strong>deliberate work after base pretraining that changes model weights—or a trained accessory such as a reward model—to produce desired behavior.</strong> Under this definition, prompting, retrieval, agent orchestration, and serving optimizations are adjacent systems rather than post-training methods.</p>
+          <div class="comparison-table" role="table" aria-label="Dimensions of the post-training stack">
+            <div role="row"><span role="columnheader">Dimension</span><strong role="columnheader">Examples</strong><strong role="columnheader">Question answered</strong></div>
+            <div role="row"><span role="cell">Evidence</span><p role="cell">Tokens, demonstrations, comparisons, rewards, trajectories</p><p role="cell">What should the model learn from?</p></div>
+            <div role="row"><span role="cell">Objective</span><p role="cell">Cross-entropy, DPO, PPO, GRPO</p><p role="cell">How should that evidence change the policy?</p></div>
+            <div role="row"><span role="cell">Update</span><p role="cell">Full fine-tuning, LoRA, adapters</p><p role="cell">Which parameters should move?</p></div>
+            <div role="row"><span role="cell">Target</span><p role="cell">Instructions, reasoning, tools, safety, style</p><p role="cell">Which behavior are we shaping?</p></div>
+            <div role="row"><span role="cell">Loop</span><p role="cell">Offline, online, continual</p><p role="cell">How often does new evidence update the model?</p></div>
+          </div>
+          <p>This distinction prevents a common category error. LoRA and DPO are not alternatives: LoRA describes which parameters move, while DPO describes the learning objective. DPO can be run with LoRA or with full-parameter fine-tuning.</p>
+          <div class="chapter-flow" aria-label="A modern post-training program"><span>Specify</span><i>→</i><span>Collect evidence</span><i>→</i><span>Optimize</span><i>→</i><span>Evaluate</span><i>→</i><span>Deploy carefully</span><i>→</i><span>Learn again</span></div>
+          <p>Real recipes compose multiple stages. <a href="https://allenai.org/blog/tulu-3-technical" target="_blank" rel="noreferrer">Tülu 3</a> combines supervised fine-tuning, preference optimization, and reinforcement learning with verifiable rewards. <a href="https://ai.meta.com/blog/meta-llama-3/" target="_blank" rel="noreferrer">Llama 3</a> combined supervised fine-tuning, rejection sampling, PPO, and DPO. The recipe is a sequence of signals and tradeoffs, not one magic optimizer.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="contract">
+        <aside><span>01</span><p>Contract + evals</p></aside>
+        <div>
+          <h2>Define the behavior before choosing the optimizer.</h2>
+          <p>Every post-training program begins with a behavior specification: the tasks and users in scope, correct outputs, tool permissions, refusal boundaries, cost limits, and evidence of completion. The same contract must determine data collection and evaluation. Otherwise, the training signal and the acceptance test reward different systems.</p>
+          <p>Build held-out task suites, pairwise human comparisons, deterministic graders, safety tests, and regression sets before the expensive training run. Split by task and semantic cluster rather than by individual response so near-duplicate prompts do not leak into evaluation.</p>
+          <div class="schema-table" role="table" aria-label="Minimum behavior contract">
+            <div role="row"><strong role="columnheader">Artifact</strong><strong role="columnheader">What it fixes in advance</strong></div>
+            <div role="row"><code role="cell">task_distribution</code><p role="cell">Users, domains, difficulty, languages, and edge cases</p></div><div role="row"><code role="cell">success_criteria</code><p role="cell">Correctness, completion, calibration, latency, and cost</p></div><div role="row"><code role="cell">policy_boundary</code><p role="cell">Permissions, refusals, escalation, and prohibited actions</p></div><div role="row"><code role="cell">evaluation_suite</code><p role="cell">Held-out tasks, graders, human review, and regressions</p></div>
+          </div>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Always. A small, trustworthy evaluation is more useful than a large training run with an undefined target.</p></div><div><h3>Do not proceed when</h3><p>Success is described only as “make the model better,” or the grader has not been checked against expert judgment.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="continued">
+        <aside><span>02</span><p>Continued pretraining</p></aside>
+        <div>
+          <h2>Change the represented distribution before teaching the assistant.</h2>
+          <p>Continued pretraining applies the language-model objective to additional unlabeled tokens. It is useful for specialized vocabulary, languages, code, scientific literature, or long-context data. It changes what distribution the model represents; it does not directly teach a conversation or tool-use contract.</p>
+          <p><a href="https://arxiv.org/abs/2004.10964" target="_blank" rel="noreferrer">Domain-adaptive and task-adaptive pretraining</a> demonstrated that further training on representative corpora can improve downstream performance. The boundary is fuzzy: some teams call this post-training, while others call it late pretraining or mid-training.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>The model lacks domain language or foundational patterns, and you have a large, clean, representative corpus.</p></div><div><h3>Avoid it when</h3><p>The problem is response format, the facts change frequently, or retrieval can provide exact current information more safely.</p></div></div>
+          <p>Protect the general model with replay data and broad regression tests. Continued training on a narrow corpus can improve the target domain while erasing useful behavior elsewhere.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="sft">
+        <aside><span>03</span><p>Supervised tuning</p></aside>
+        <div>
+          <h2>Use demonstrations to establish the assistant contract.</h2>
+          <p>Supervised fine-tuning, or SFT, trains the model to imitate high-quality prompt-response demonstrations. Instruction tuning is SFT over a diverse set of tasks expressed through natural-language instructions. <a href="https://arxiv.org/abs/2109.01652" target="_blank" rel="noreferrer">FLAN</a> showed that instruction tuning can improve zero-shot generalization, while <a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noreferrer">InstructGPT</a> used SFT as the starting policy for preference-based reinforcement learning.</p>
+          <div class="equation"><span>Masked supervised objective</span><code>L<sub>SFT</sub> = − (1 / Σₜ mₜ) Σₜ mₜ log π<sub>θ</sub>(yₜ | x, y&lt;t)</code><p><code>mₜ</code> selects the assistant tokens that the model is responsible for generating.</p></div>
+          <p>SFT is strongest when experts can demonstrate the answer directly. It teaches roles, formatting, tone, tool-call syntax, uncertainty, and task-specific strategies. Data quality, consistency, and coverage matter more than copying every available conversation.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>There is a clear successful response, the base model already has the capability, or structured output and tool syntax must be reliable.</p></div><div><h3>Avoid it when</h3><p>Evaluators can rank outputs but cannot write ideal ones, or success depends on delayed environment consequences.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="synthetic">
+        <aside><span>04</span><p>Synthetic data</p></aside>
+        <div>
+          <h2>Scale demonstrations only after defining a trustworthy filter.</h2>
+          <p>Synthetic-data pipelines generate prompts, answers, critiques, reasoning traces, or tool trajectories with another model—or with the model being trained. <a href="https://arxiv.org/abs/2212.10560" target="_blank" rel="noreferrer">Self-Instruct</a> generates and filters instruction data before fine-tuning. Rejection sampling, best-of-<em>N</em>, majority voting, critique-and-revision, and expert iteration retain samples that satisfy a judge or verifier.</p>
+          <p><a href="https://ai.meta.com/blog/meta-llama-3-1/" target="_blank" rel="noreferrer">Llama 3.1</a> used iterative synthetic-data generation, filtering, SFT, rejection sampling, and DPO. The important component is not generation volume; it is whether the selection rule identifies real quality rather than confident style.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Human data is scarce, a stronger teacher or reliable verifier exists, and the prompt distribution needs broader coverage.</p></div><div><h3>Avoid it when</h3><p>The generator and judge share blind spots, provenance is unclear, or filtering collapses diversity into one model’s preferred style.</p></div></div>
+          <blockquote>Synthetic data scales what the pipeline can already recognize.</blockquote>
+        </div>
+      </section>
+      <section class="article-section reveal" id="preferences">
+        <aside><span>05</span><p>Preference optimization</p></aside>
+        <div>
+          <h2>Learn relative quality when one perfect answer is hard to write.</h2>
+          <p>Preference data records that one response is better than another. The judgment can come from people, AI judges, rules, or production outcomes. Direct preference methods update the policy from those comparisons without first fitting a separate scalar reward model.</p>
+          <p><a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noreferrer">Direct Preference Optimization</a> turns the standard preference problem into a classification-style loss. DPO, IPO, <a href="https://arxiv.org/abs/2402.01306" target="_blank" rel="noreferrer">KTO</a>, ORPO, and <a href="https://arxiv.org/abs/2405.14734" target="_blank" rel="noreferrer">SimPO</a> belong to the same broad family but make different assumptions about labels, references, margins, and regularization.</p>
+          <div class="equation equation-wide"><span>DPO objective</span><code>L<sub>DPO</sub> = −log σ(β[(log π<sub>θ</sub>(y⁺|x) − log π<sub>ref</sub>(y⁺|x)) − (log π<sub>θ</sub>(y⁻|x) − log π<sub>ref</sub>(y⁻|x))])</code><p>The policy increases the relative probability of the preferred response while remaining anchored to a reference policy.</p></div>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Several answers are valid, ranking is easier than demonstration, and a high-quality comparison dataset already exists.</p></div><div><h3>Avoid it when</h3><p>Preferences mostly encode length or style, the data is far off-policy, or success depends on a sequence of environment actions.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="reward">
+        <aside><span>06</span><p>Reward models</p></aside>
+        <div>
+          <h2>Turn repeated judgments into a proxy—then distrust the proxy.</h2>
+          <p>A reward model reads a prompt and response and emits a scalar. It can rank candidates, filter synthetic data, select checkpoints, or provide the training signal for RL. With a Bradley–Terry model, preference probability depends on the difference between the two reward scores.</p>
+          <div class="equation"><span>Preference probability</span><code>P(y⁺ ≻ y⁻ | x) = σ(r<sub>φ</sub>(x,y⁺) − r<sub>φ</sub>(x,y⁻))</code><p>Absolute reward values have no independent meaning; only their differences are identified by the comparison data.</p></div>
+          <p>The reward model generalizes beyond individually labeled examples. That is its value and its central risk. Once the policy is optimized against it, small proxy errors become attractive strategies. Research on <a href="https://openai.com/index/scaling-laws-for-reward-model-overoptimization/" target="_blank" rel="noreferrer">reward-model overoptimization</a> shows that proxy reward can continue rising after ground-truth quality begins to fall.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Quality is subjective but repeatedly judged, new on-policy samples must be scored, and independent human evaluation remains available.</p></div><div><h3>Avoid it when</h3><p>A deterministic verifier can check the outcome directly, annotators do not represent intended users, or the reward has not faced adversarial outputs.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="rlhf">
+        <aside><span>07</span><p>RLHF + RLAIF</p></aside>
+        <div>
+          <h2>Use online policy optimization when the model must explore.</h2>
+          <p>The canonical RLHF pipeline trains an SFT policy, collects comparisons, fits a reward model, generates fresh policy outputs, and optimizes the policy while constraining drift. PPO is historically prominent, but REINFORCE, RLOO, GRPO, and related policy-gradient methods can play similar roles.</p>
+          <div class="equation"><span>Regularized policy objective</span><code>maximize E[r<sub>φ</sub>(x,y)] − β KL(π<sub>θ</sub> || π<sub>ref</sub>)</code><p>The KL term limits how aggressively the policy leaves a known behavior distribution.</p></div>
+          <p>RLAIF changes the source of the comparisons: an AI judge supplies some or all of the feedback. <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noreferrer">Constitutional AI</a> combines written principles, model-generated critiques and revisions, AI preference labels, and reinforcement learning.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>On-policy outputs reveal new failure modes, subjective quality needs exploration, and the team can monitor rollouts, KL drift, and reward hacking.</p></div><div><h3>Avoid it when</h3><p>SFT or DPO already meets the goal, rollouts are unsafe or expensive, or the learned reward has not been independently validated.</p></div></div>
+          <p>AI feedback can reduce labeling cost. It does not remove the need for human governance, judge audits, or held-out evaluation.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="rlvr">
+        <aside><span>08</span><p>Verifiable RL</p></aside>
+        <div>
+          <h2>Replace opinion with execution when outcomes can be checked.</h2>
+          <p>Reinforcement learning with verifiable rewards replaces a learned preference proxy with a verifier: unit tests for code, exact or symbolic answers for mathematics, schema validation, successful sandbox execution, or a known environment state.</p>
+          <p><a href="https://arxiv.org/abs/2411.15124" target="_blank" rel="noreferrer">Tülu 3</a> applies RLVR after SFT and preference optimization. <a href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noreferrer">DeepSeek-R1</a> showed that large-scale RL can elicit strong reasoning behavior; its RL-only model also produced readability and language-mixing failures, motivating cold-start data and a multi-stage recipe for the final model.</p>
+          <div class="chapter-flow"><span>Sample task</span><i>→</i><span>Generate attempts</span><i>→</i><span>Execute or verify</span><i>→</i><span>Assign reward</span><i>→</i><span>Update policy</span></div>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Outcomes are automatically checkable, several solution paths can work, and exploration or longer reasoning is the bottleneck.</p></div><div><h3>Avoid it when</h3><p>Correctness is subjective, the verifier checks only surface format, or passing the available tests does not imply solving the real task.</p></div></div>
+          <p>For specialist enterprise agents, RLVR is especially useful when task completion can be checked from real workflow state rather than inferred from a fluent final message.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="agents">
+        <aside><span>09</span><p>Agents + process</p></aside>
+        <div>
+          <h2>Train decisions and trajectories when success is delayed.</h2>
+          <p>Outcome rewards ask whether the agent succeeded. Process supervision asks whether intermediate decisions were sound. A training trajectory can contain subgoals, tool selections, arguments, observations, state changes, permission checks, recovery steps, final artifacts, costs, and the evidence of completion.</p>
+          <p><a href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noreferrer">Process supervision</a> outperformed outcome-only supervision in one mathematical reasoning setting, but that result does not make process rewards universally superior. Step labels can be expensive, noisy, and overly prescriptive.</p>
+          <p>Tool use can be learned through demonstrations, synthetic traces, preferences, or environmental RL. <a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noreferrer">Toolformer</a> trained models to decide when to call an API, what arguments to provide, and how to incorporate its result.</p>
+          <div class="schema-table" role="table" aria-label="Agent trajectory evidence"><div role="row"><strong role="columnheader">Trajectory field</strong><strong role="columnheader">Question it answers</strong></div><div role="row"><code role="cell">decision</code><p role="cell">Why did the policy choose this next action?</p></div><div role="row"><code role="cell">tool_call + observation</code><p role="cell">What happened when the action reached the environment?</p></div><div role="row"><code role="cell">state_delta</code><p role="cell">What changed because of the action?</p></div><div role="row"><code role="cell">verification</code><p role="cell">Which evidence proves success or failure?</p></div><div role="row"><code role="cell">recovery</code><p role="cell">Did the agent revise its plan after contradictory evidence?</p></div></div>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Credit is delayed, intermediate actions carry risk, tools are stable, and step-level or terminal evidence can be trusted.</p></div><div><h3>Avoid it when</h3><p>Intermediate reasoning cannot be reliably labeled, actions are irreversible without approval, or constrained decoding already solves the tool-format problem.</p></div></div>
+          <blockquote>An agent should learn when to act, when to verify, when to recover, and when to stop.</blockquote>
+        </div>
+      </section>
+      <section class="article-section reveal" id="safety">
+        <aside><span>10</span><p>Safety alignment</p></aside>
+        <div>
+          <h2>Safety is a target across methods, not one optimizer.</h2>
+          <p>Safety post-training can use demonstrations, preference comparisons, constitutional feedback, adversarial prompts, red-team data, refusal and safe-completion examples, tool-permission trajectories, targeted editing, and separate input or output classifiers.</p>
+          <p>Model-level alignment must remain one layer of a system boundary. Sandboxes, least-privilege credentials, confirmation gates, output validation, rate limits, and audit logs constrain what generated text can cause even when the policy makes the wrong decision.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>The model sees untrusted data, can access private information or tools, or operates in a consequential workflow.</p></div><div><h3>Do not use it as</h3><p>A replacement for access control, proof that unseen attacks are solved, or one global safety score that hides over-refusal and capability loss.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="updates">
+        <aside><span>11</span><p>Full FT + PEFT</p></aside>
+        <div>
+          <h2>The objective and the parameter update are separate choices.</h2>
+          <p>Full fine-tuning updates all parameters. Parameter-efficient fine-tuning freezes most weights and trains a smaller adapter. <a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noreferrer">LoRA</a> represents updates through low-rank matrices; QLoRA combines low-rank adaptation with a quantized base model.</p>
+          <div class="comparison-table" role="table" aria-label="Full fine-tuning and parameter-efficient fine-tuning"><div role="row"><span role="columnheader">Method</span><strong role="columnheader">Best fit</strong><strong role="columnheader">Primary tradeoff</strong></div><div role="row"><span role="cell">Full fine-tuning</span><p role="cell">Large distribution shift and maximum attainable quality</p><p role="cell">Compute, optimizer memory, storage, and regression risk</p></div><div role="row"><span role="cell">LoRA / adapters</span><p role="cell">Rapid experiments, many specialists, limited hardware</p><p role="cell">Adapter capacity, routing, versioning, and serving complexity</p></div><div role="row"><span role="cell">QLoRA</span><p role="cell">Memory-constrained adaptation</p><p role="cell">Quantization support and numerical behavior</p></div></div>
+          <div class="method-guidance"><div><h3>Use PEFT when</h3><p>Compute is limited, several tenant or task adapters are needed, and the desired change is relatively localized.</p></div><div><h3>Prefer full tuning when</h3><p>The target distribution differs substantially and experiments show that adapter capacity is the bottleneck.</p></div></div>
+          <p>PEFT is not automatically safer. A small adapter can still introduce broad behavioral regressions and requires the same evaluation discipline.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="distillation">
+        <aside><span>12</span><p>Distillation</p></aside>
+        <div>
+          <h2>Transfer behavior into a smaller or cheaper policy.</h2>
+          <p>Distillation trains a student from a stronger teacher’s responses, logits, reasoning traces, preferences, or trajectories. It is both a post-training technique and a deployment strategy: the teacher produces evidence that lets a smaller model approximate useful behavior on a target distribution.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Serving cost or latency is central, a strong teacher exists, and teacher outputs can be filtered or verified on the target tasks.</p></div><div><h3>Avoid it when</h3><p>The teacher is unreliable, licensing prevents derivative training, or the student must exceed the teacher without another learning signal.</p></div></div>
+          <p>Distillation transfers mistakes as efficiently as competence. The verifier and dataset mixture determine which one dominates.</p>
+        </div>
+      </section>
+      <section class="article-section reveal" id="merging">
+        <aside><span>13</span><p>Model merging</p></aside>
+        <div>
+          <h2>Compose compatible checkpoints without pretending interference disappears.</h2>
+          <p>Model merging combines compatible fine-tuned checkpoints or task vectors without a full new training job. Methods such as <a href="https://arxiv.org/abs/2306.01708" target="_blank" rel="noreferrer">TIES-Merging</a> try to reduce interference between parameter updates. It can be a fast research tool, but capability addition in weight space is not guaranteed.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>Checkpoints share the same base, tokenizer, and architecture, and every source capability can be reevaluated after composition.</p></div><div><h3>Avoid it when</h3><p>Origins are incompatible, safety behavior depends on subtle interactions, or merging is being used to avoid collecting proper multitask data.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section reveal" id="continual">
+        <aside><span>14</span><p>Continual learning</p></aside>
+        <div>
+          <h2>Turn new evidence into versioned improvement—not silent drift.</h2>
+          <p>Continual post-training uses new failures, preferences, verified production outcomes, or changing task distributions to produce new policy versions. It is the natural destination for an agent that should improve at recurring enterprise workflows.</p>
+          <div class="chapter-flow"><span>Observe</span><i>→</i><span>Curate</span><i>→</i><span>Train</span><i>→</i><span>Evaluate</span><i>→</i><span>Canary</span><i>→</i><span>Promote or roll back</span></div>
+          <p>The loop needs data lineage, consent, replay sets, regression suites, approval gates, and rollback. A <a href="https://arxiv.org/abs/2404.16789" target="_blank" rel="noreferrer">survey of continual learning for LLMs</a> emphasizes catastrophic forgetting across continued pretraining and continual fine-tuning.</p>
+          <div class="method-guidance"><div><h3>Use it when</h3><p>The workflow genuinely changes, new evidence arrives repeatedly, and every update can be versioned, canaried, and reversed.</p></div><div><h3>Avoid it when</h3><p>Raw production logs flow directly into training, feedback can be manipulated, or privacy and old-capability regressions are not controlled.</p></div></div>
+        </div>
+      </section>
+      <section class="article-section article-close reveal" id="decision">
+        <aside><span>15</span><p>Decision guide</p></aside>
+        <div>
+          <h2>Start from the failure, not the fashionable acronym.</h2>
+          <div class="comparison-table" role="table" aria-label="Post-training method decision guide">
+            <div role="row"><span role="columnheader">Observed problem</span><strong role="columnheader">First method to consider</strong><strong role="columnheader">Why</strong></div>
+            <div role="row"><span role="cell">Missing domain language</span><p role="cell">Continued pretraining</p><p role="cell">The represented token distribution is the bottleneck.</p></div><div role="row"><span role="cell">Ignores format or role</span><p role="cell">SFT</p><p role="cell">High-quality demonstrations define the target directly.</p></div><div role="row"><span role="cell">Good answers are easy to rank</span><p role="cell">DPO or another direct preference objective</p><p role="cell">Comparisons are cheaper than perfect demonstrations.</p></div><div role="row"><span role="cell">Outcome is machine-checkable</span><p role="cell">RLVR</p><p role="cell">Execution supplies a stronger signal than opinion.</p></div><div role="row"><span role="cell">Success is a long action sequence</span><p role="cell">Trajectory supervision or agent RL</p><p role="cell">The model needs sequential practice and credit assignment.</p></div><div role="row"><span role="cell">Subjective quality needs exploration</span><p role="cell">Reward model plus RLHF or RLAIF</p><p role="cell">Fresh policy outputs expose failures outside static data.</p></div><div role="row"><span role="cell">Model is too expensive</span><p role="cell">Distillation</p><p role="cell">Transfer the useful policy into a smaller student.</p></div><div role="row"><span role="cell">Many isolated specialists</span><p role="cell">LoRA or adapters</p><p role="cell">Share a base while versioning smaller updates.</p></div><div role="row"><span role="cell">Behavior changes over time</span><p role="cell">Continual post-training</p><p role="cell">New evidence becomes a governed model release.</p></div><div role="row"><span role="cell">Facts are current or private</span><p role="cell">Retrieval or tools—not weight training</p><p role="cell">External state is fresher, auditable, and easier to revoke.</p></div>
+          </div>
+          <p>For a specialist enterprise agent, the practical sequence is usually conservative: build the evaluation environment and tool contract; establish a prompt-and-tool baseline; SFT on reviewed successful trajectories; add preference optimization for qualitative differences; add RLVR wherever outcomes are verifiable; and introduce long-horizon agent RL only when sequential credit assignment is the demonstrated bottleneck.</p>
+          <p>At every stage, compare the base checkpoint, SFT checkpoint, current policy, and previous production model on the same evaluation vector. Watch correctness, instruction following, calibration, safety, tool behavior, latency, token use, and broad regressions separately.</p>
+          <blockquote>Post-training is not an optimizer. It is the discipline of turning evidence about desired behavior into measured policy improvement.</blockquote>
+          <div class="chapter-sources">
+            <span>Primary papers and technical references</span>
+            <ul>
+              <li><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noreferrer">Training language models to follow instructions with human feedback ↗</a></li><li><a href="https://arxiv.org/abs/2411.15124" target="_blank" rel="noreferrer">Tülu 3: Pushing Frontiers in Open Language Model Post-Training ↗</a></li><li><a href="https://ai.meta.com/blog/meta-llama-3-1/" target="_blank" rel="noreferrer">Llama 3.1 post-training recipe ↗</a></li><li><a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noreferrer">Direct Preference Optimization ↗</a></li><li><a href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noreferrer">DeepSeek-R1: Reinforcement Learning for Reasoning ↗</a></li><li><a href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noreferrer">Let's Verify Step by Step ↗</a></li><li><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noreferrer">Constitutional AI: Harmlessness from AI Feedback ↗</a></li><li><a href="https://openai.com/index/scaling-laws-for-reward-model-overoptimization/" target="_blank" rel="noreferrer">Scaling laws for reward-model overoptimization ↗</a></li><li><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noreferrer">LoRA: Low-Rank Adaptation of Large Language Models ↗</a></li><li><a href="https://arxiv.org/abs/2306.01708" target="_blank" rel="noreferrer">TIES-Merging: Resolving Interference When Merging Models ↗</a></li>
+            </ul>
+            <p>The taxonomy and recommendations are a synthesis of these references and the practical boundaries between model training, agent systems, and inference.</p>
+          </div>
+          <a class="button button-primary" href="post-evals-rl-environments.html">Next: build the evaluation environment <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </article>
+  </main>
+  <footer><div class="footer-main"><p class="section-index">Post-training / Blog 01</p><h2>Choose the signal before the optimizer.</h2></div><div class="footer-bottom"><p>Vikram Kharvi · Applied AI Researcher & Engineer</p><p>California · <span id="local-time">Pacific time</span></p><a href="#article">Back to blog ↑</a></div></footer>
+  <script src="script.js?v=poststack1"></script>
+</body>
+</html>
