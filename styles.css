@@ -851,7 +851,7 @@ footer { width: var(--page); margin: 0 auto; padding: 160px 0 45px; }
   .landing-deck { margin-top: 27px; font-size: 17px; }
   .landing-actions { align-items: flex-start; flex-direction: column; gap: 20px; margin-top: 31px; }
   .post-loop { margin-top: 62px; padding-left: 20px; }
-  .post-start { width: calc(100vw - 20px); margin-top: 54px; padding: 70px 26px; }
+  .post-start { width: calc(100% - 20px); margin-top: 54px; padding: 70px 26px; }
   .post-start h2 { font-size: 57px; }
   .post-research-map { padding: 95px 0 55px; }
   .landing-section-heading { display: block; margin-bottom: 38px; }
