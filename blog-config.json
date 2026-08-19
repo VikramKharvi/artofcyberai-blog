@@ -1,0 +1,11 @@
+{
+  "domain": "https://trainrl.com",
+  "site_name": "TrainRL",
+  "section": "Post-training",
+  "slug_prefix": "post-",
+  "back_label": "All post-training blogs",
+  "active_nav": "post",
+  "cover_label": "TRAINRL / POST-TRAINING",
+  "footer_kicker": "TrainRL / Post-trained research",
+  "footer_heading": "Better behavior needs better learning signals."
+}
